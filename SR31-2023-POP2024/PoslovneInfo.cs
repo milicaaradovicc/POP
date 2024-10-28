@@ -11,16 +11,22 @@ namespace SR31_2023_POP2024
         public DateTime DatumNabavke { get; set; }
         public bool Prodato { get; set; }
         public decimal CenaProdaje { get; set; }    
-        public DateTime DatumProdaje { get; set; }
+        public DateTime? DatumProdaje { get; set; }
         public Korisnik Prodavac { get; set; }
         public Kupac Kupac { get; set; }
         public Automobil Automobil { get; set; }
 
-        public PoslovneInfo(decimal cenaNabavke, DateTime datumNabavke, Automobil automobil)
+        public PoslovneInfo(decimal cenaNabavke, DateTime datumNabavke, bool prodato,decimal cenaProdaje, 
+                            DateTime? datumProdaje, Korisnik prodavac, Kupac kupac, Automobil automobil)
+
         {
             CenaNabavke = cenaNabavke;
             DatumNabavke = datumNabavke;
-            Prodato = false;
+            Prodato = prodato;
+            CenaProdaje = cenaProdaje;
+            DatumProdaje = datumProdaje;
+            Prodavac = prodavac;
+            Kupac = kupac;
             Automobil = automobil;
         }
     }
