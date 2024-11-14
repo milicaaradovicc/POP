@@ -1,0 +1,15 @@
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\obj\Debug\net8.0\SR31-2023-POP2024.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\obj\Debug\net8.0\SR31-2023-POP2024.AssemblyInfoInputs.cache
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\obj\Debug\net8.0\SR31-2023-POP2024.AssemblyInfo.cs
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\obj\Debug\net8.0\SR31-2023-POP2024.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\obj\Debug\net8.0\SR31-2023-POP2024.sourcelink.json
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\bin\Debug\net8.0\SR31-2023-POP2024.exe
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\bin\Debug\net8.0\SR31-2023-POP2024.deps.json
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\bin\Debug\net8.0\SR31-2023-POP2024.runtimeconfig.json
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\bin\Debug\net8.0\SR31-2023-POP2024.dll
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\bin\Debug\net8.0\SR31-2023-POP2024.pdb
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\obj\Debug\net8.0\SR31-2023-POP2024.dll
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\obj\Debug\net8.0\refint\SR31-2023-POP2024.dll
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\obj\Debug\net8.0\SR31-2023-POP2024.pdb
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\obj\Debug\net8.0\SR31-2023-POP2024.genruntimeconfig.cache
+C:\Users\Lenovo\source\repos\SR31-2023-POP2024\SR31-2023-POP2024\obj\Debug\net8.0\ref\SR31-2023-POP2024.dll
