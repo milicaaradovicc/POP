@@ -10,7 +10,7 @@ namespace SR31_2023_POP2024.Repository
     {
         public void PersistCars(List<Automobil> model)
         {
-            using (var streamWriter = new StreamWriter(CARS_LOCATION))
+            using (var streamWriter = new StreamWriter(CARS_LOCATION, false))
             {
                 foreach (var automobil in model)
                 {

@@ -128,6 +128,7 @@ namespace SR31_2023_POP2024.Consoles
             );
 
             _carService.AddCar(automobil);
+            _carService.SaveCarsToCsv();
         }
 
         private void EditCar()
@@ -187,6 +188,7 @@ namespace SR31_2023_POP2024.Consoles
             
 
             _carService.EditCar(id, car);
+            _carService.SaveCarsToCsv();
             Console.WriteLine("Automobil je uspešno izmenjen.");
         }
 
@@ -195,6 +197,7 @@ namespace SR31_2023_POP2024.Consoles
             Console.WriteLine("Unesite ID automobila koji želite da obrišete:");
             var id = Console.ReadLine();
             _carService.DeleteCar(id);
+            _carService.SaveCarsToCsv();
             Console.WriteLine("Automobil je uspešno obrisan.");
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using SR31_2023_POP2024.Repository;
 
 namespace SR31_2023_POP2024.Service
@@ -34,6 +35,16 @@ namespace SR31_2023_POP2024.Service
         public void DeleteCar(string id)
         {
             _carRepository.DeleteCar(id);
+        }
+
+        public void SaveCarsToCsv()
+        {
+            var cars = GetAllCars(); 
+            _carRepository.PersistCars(cars); 
+        }
+        public void PersistCars(List<Automobil> model)
+        {
+            _carRepository.PersistCars(model); 
         }
 
     }
