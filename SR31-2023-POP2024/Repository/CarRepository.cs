@@ -14,7 +14,7 @@ namespace SR31_2023_POP2024.Repository
             {
                 foreach (var automobil in model)
                 {
-                    streamWriter.WriteLine($"{automobil.ID},{automobil.Marka.Naziv}, {automobil.Marka.DrzavaNastanka},{automobil.Model.NazivModela},{automobil.Godiste},{automobil.Snaga},{automobil.Pogon}");
+                    streamWriter.WriteLine($"{automobil.ID},{automobil.Marka.Naziv}, {automobil.Marka.DrzavaNastanka},{automobil.Model.NazivModela},{automobil.Godiste},{automobil.Snaga},{automobil.Pogon},{automobil.Deleted}");
 
                 }
             }
@@ -35,7 +35,8 @@ namespace SR31_2023_POP2024.Repository
                         new ModelAutomobila(new MarkaAutomobila(lineParts[1], lineParts[2]), lineParts[3]), 
                         int.Parse(lineParts[4]), 
                         int.Parse(lineParts[5]), 
-                        lineParts[6] 
+                        lineParts[6],
+                        bool.Parse(lineParts[7])
                     );
                     cars.Add(automobil);
                 }
@@ -74,9 +75,9 @@ namespace SR31_2023_POP2024.Repository
             var cars = GetAllCars();
             var index = cars.FindIndex(car => car.ID == id);
 
-            if (index != -1)
+            if (cars != null)
             {
-                cars.RemoveAt(index);
+                car.Deleted = true;
                 PersistCars(cars);
             }
         }

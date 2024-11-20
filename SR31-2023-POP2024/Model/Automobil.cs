@@ -13,14 +13,16 @@ namespace SR31_2023_POP2024
         public int Godiste { get; set; }
         public int Snaga { get; set;}
         public string Pogon { get; set; }
+        public bool Deleted { get; set; }
 
-        public Automobil(string id, MarkaAutomobila marka, ModelAutomobila model, int godiste, int snaga, string pogon) {
+        public Automobil(string id, MarkaAutomobila marka, ModelAutomobila model, int godiste, int snaga, string pogon, bool deleted = false) {
             ID = id;
             Marka = marka;
             Model = model;
             Godiste = godiste;
             Snaga = snaga;
             Pogon = pogon;
+            Deleted = deleted;
         }
     }
 }
