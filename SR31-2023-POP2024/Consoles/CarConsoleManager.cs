@@ -101,10 +101,19 @@ namespace SR31_2023_POP2024.Consoles
         }
 
         private static int nextId = 1;
+        private static HashSet<int> usedIds = new HashSet<int>();
+
 
         private void AddCar()
         {
+            while (usedIds.Contains(nextId))
+            {
+                nextId++;  
+            }
+
             string id = nextId.ToString();
+            usedIds.Add(nextId); 
+
             nextId++;
 
             Console.WriteLine("Unesite naziv marke: ");
