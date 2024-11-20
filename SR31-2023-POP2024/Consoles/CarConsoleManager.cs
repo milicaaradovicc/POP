@@ -95,10 +95,12 @@ namespace SR31_2023_POP2024.Consoles
             }
         }
 
+        private static int nextId = 1;
+
         private void AddCar()
         {
-            Console.WriteLine("Unesite ID automobila: ");
-            var id = Console.ReadLine();
+            string id = nextId.ToString();
+            nextId++;
 
             Console.WriteLine("Unesite naziv marke: ");
             var markaNaziv = Console.ReadLine();
