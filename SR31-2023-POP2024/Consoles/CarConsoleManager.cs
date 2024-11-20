@@ -69,7 +69,7 @@ namespace SR31_2023_POP2024.Consoles
 
         private void PrintCars()
         {
-            var cars = _carService.GetAllCars();
+            var cars = _carService.GetAllCars().Where(car => !car.Deleted).ToList();
             Console.WriteLine("ID, Marka, Drzava nastanka, Model, Godiste, Snaga, Pogon");
 
             foreach (var car in cars)
@@ -124,7 +124,8 @@ namespace SR31_2023_POP2024.Consoles
                 new ModelAutomobila(new MarkaAutomobila(markaNaziv, drzavaNastanka), nazivModela), 
                 godiste,
                 snaga,
-                pogon
+                pogon,
+                false
             );
 
             _carService.AddCar(automobil);
