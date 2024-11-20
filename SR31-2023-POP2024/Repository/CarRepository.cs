@@ -75,10 +75,10 @@ namespace SR31_2023_POP2024.Repository
             var cars = GetAllCars();
             var index = cars.FindIndex(car => car.ID == id);
 
-            if (cars != null)
+            if (index != -1) 
             {
-                car.Deleted = true;
-                PersistCars(cars);
+                cars[index].Deleted = true; 
+                PersistCars(cars); 
             }
         }
 
