@@ -35,6 +35,7 @@ namespace SR31_2023_POP2024.Consoles
             Console.WriteLine("5. Brisanje automobila");
             Console.WriteLine();
             Console.WriteLine("x. Izadji");
+            Console.WriteLine();
 
             var command = Console.ReadLine();
             return command;
@@ -70,11 +71,16 @@ namespace SR31_2023_POP2024.Consoles
         private void PrintCars()
         {
             var cars = _carService.GetAllCars().Where(car => !car.Deleted).ToList();
-            Console.WriteLine("ID, Marka, Drzava nastanka, Model, Godiste, Snaga, Pogon");
+
+            if (cars.Count == 0)
+            {
+                Console.WriteLine("Nema automobila za pretragu.");
+                return;
+            }
 
             foreach (var car in cars)
             {
-                Console.WriteLine($"{car.ID},{car.Marka.Naziv},{car.Marka.DrzavaNastanka},{car.Model.NazivModela},{car.Godiste},{car.Snaga},{car.Pogon}");
+                Console.WriteLine($"ID: {car.ID}, Marka: {car.Marka.Naziv}, Država nastanka: {car.Marka.DrzavaNastanka}, Model: {car.Model.NazivModela}, Godište: {car.Godiste}, Snaga: {car.Snaga}, Pogon: {car.Pogon}");
             }
         }
 
@@ -90,8 +96,7 @@ namespace SR31_2023_POP2024.Consoles
             }
             else
             {
-                Console.WriteLine("ID, Marka, Drzava nastanka, Model, Godiste, Snaga, Pogon");
-                Console.WriteLine($"{car.ID},{car.Marka.Naziv},{car.Marka.DrzavaNastanka},{car.Model.NazivModela},{car.Godiste},{car.Snaga},{car.Pogon}");
+                Console.WriteLine($"ID: {car.ID}, Marka: {car.Marka.Naziv}, Država nastanka: {car.Marka.DrzavaNastanka}, Model: {car.Model.NazivModela}, Godište: {car.Godiste}, Snaga: {car.Snaga}, Pogon: {car.Pogon}");
             }
         }
 
