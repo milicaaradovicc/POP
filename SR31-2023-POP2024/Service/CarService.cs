@@ -11,6 +11,8 @@ namespace SR31_2023_POP2024.Service
     public class CarService : ICarService
     {
         private readonly ICarRepository _carRepository = new CarRepository();
+        private readonly BrandRepository _brandRepository = new BrandRepository(); 
+
 
         public List<Automobil> GetAllCars()
         {
@@ -24,11 +26,23 @@ namespace SR31_2023_POP2024.Service
 
         public void AddCar(Automobil automobil)
         {
+            
+            if (_brandRepository.GetBrand(automobil.Marka.Naziv) == null)
+            {
+                _brandRepository.AddBrand(automobil.Marka);
+            }
+
             _carRepository.AddCar(automobil);
         }
 
         public void EditCar(string id, Automobil updatedAutomobil)
         {
+            if (_brandRepository.GetBrand(updatedAutomobil.Marka.Naziv) == null)
+            {
+                _brandRepository.AddBrand(updatedAutomobil.Marka);
+            }
+
+            
             _carRepository.EditCar(id, updatedAutomobil);
         }
 
@@ -39,14 +53,16 @@ namespace SR31_2023_POP2024.Service
 
         public void SaveCarsToCsv()
         {
-            var cars = GetAllCars(); 
-            _carRepository.PersistCars(cars); 
+            var cars = GetAllCars();
+            _carRepository.PersistCars(cars);
         }
+
         public void PersistCars(List<Automobil> model)
         {
-            _carRepository.PersistCars(model); 
+            _carRepository.PersistCars(model);
         }
 
     }
 }
+
 

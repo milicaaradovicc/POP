@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SR31_2023_POP2024.Service
 {
-    internal interface ICarService
+    public interface ICarService
     {
         void PersistCars(List<Automobil> model);
         public List<Automobil> GetAllCars();

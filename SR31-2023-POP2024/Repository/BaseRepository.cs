@@ -10,6 +10,8 @@ namespace SR31_2023_POP2024.Repository
     {
         public static string DATA_LOCATION = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data");
         protected string CARS_LOCATION = Path.Combine(DATA_LOCATION, "cars.csv");
+        protected string BRANDS_LOCATION = Path.Combine(DATA_LOCATION, "brands.csv");
+
 
 
         public static void EnsureDataDirExists()
