@@ -1,0 +1,36 @@
+﻿<Window x:Class="WPF.Windows.EditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.Windows"
+        mc:Ignorable="d"
+        Title="EditWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="343*"/>
+            <ColumnDefinition Width="241*"/>
+            <ColumnDefinition Width="43*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Marka:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,60,0,0" FontWeight="Bold"/>
+        <TextBox Name="MarkaTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="7,60,0,0" Grid.Column="1" Text="{Binding Marka.Naziv}"/>
+
+        <Label Content="Država Nastanka:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,100,0,0" FontWeight="Bold"/>
+        <TextBox Name="DrzavaTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="7,100,0,0" Grid.Column="1" Text="{Binding Marka.DrzavaNastanka}"/>
+
+        <Label Content="Model:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,140,0,0" FontWeight="Bold"/>
+        <TextBox Name="ModelTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="7,140,0,0" Grid.Column="1" Text="{Binding Model.NazivModela}" />
+
+        <Label Content="Godište:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,180,0,0" FontWeight="Bold"/>
+        <TextBox Name="GodisteTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="7,180,0,0" Grid.Column="1" Text="{Binding Godiste}"/>
+
+        <Label Content="Snaga:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,220,0,0" FontWeight="Bold"/>
+        <TextBox Name="SnagaTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="7,220,0,0" Grid.Column="1" Text="{Binding Snaga}"/>
+
+        <Label Content="Pogon:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,260,0,0" FontWeight="Bold"/>
+        <TextBox Name="PogonTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="7,260,0,0" Grid.Column="1" Text="{Binding Pogon}"/>
+
+        <Button Name="SubmitButton" Content="Potvrdi izmene" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="30" Margin="7,300,0,0" Click="SubmitButton_Click" Grid.Column="1"/>
+    </Grid>
+</Window>
