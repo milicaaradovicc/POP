@@ -1,2 +1,8 @@
-1,Mercedes,C Class,2020,360,AWD,False
-2,Mercedes,A Class,2019,200,AWD,False
+1,Fiat,Italija,500,2018,105,Prednji,False
+2,Mercedes,Nemacka,C Class,2022,200,Zadnji,False
+3,Audi,Nemacka,Q7,2021,231,Quattro,False
+4,Porsche,Nemacka,911,2021,450,AWD,True
+5,Toyota,Japan,Corolla,2018,140,Prednji,False
+6,BMW,Nemacka,M3,2021,473,Quattro,False
+7,Ford,SAD,Mustang,2019,460,Zadnji,False
+8,Mercedes,Nemacka,j,2019,100,jjj,True

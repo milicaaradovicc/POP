@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SR31_2023_POP2024;
-using SR31_2023_POP2024.Consoles;
+
 using SR31_2023_POP2024.Repository;
 
 namespace SR31_2023_POP2024
@@ -13,17 +13,17 @@ namespace SR31_2023_POP2024
     {
         static void Main(string[] args)
         {
-            BaseRepository.EnsureDataDirExists();
+            // Kreiraj instancu CarRepository za rad sa automobilima
+            var carRepository = new CarRepository();
 
-            var ccm = new CarConsoleManager();
-            ccm.ManageCars();
+            // Učitaj sve automobile iz baze
+            List<Automobil> allCars = carRepository.GetAllCars();
 
+            // Prikaz broja učitanih automobila
+            Console.WriteLine("Broj učitanih automobila: " + allCars.Count);
 
-            static void PersistModel(List<Automobil> model)
-            {
-                var carRepository = new CarRepository();
-                carRepository.PersistCars(model);
-            }
+            // Održavanje konzole otvorenom kako bi se prikazale informacije
+            Console.ReadLine();
         }
     }
 }

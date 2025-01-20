@@ -8,13 +8,12 @@ namespace SR31_2023_POP2024.Service
 {
     public interface ICarService
     {
-        void PersistCars(List<Automobil> model);
-        public List<Automobil> GetAllCars();
-        public Automobil? GetCar(string id);
-        public void AddCar(Automobil automobil);
-        public void EditCar(string id, Automobil updatedAutomobil);
-        public void DeleteCar(string id);
-        void SaveCarsToCsv();
+        void PersistCars(List<Automobil> cars);
+        List<Automobil> GetAllCars();
+        Automobil? GetCar(int id);
+        void AddCar(Automobil automobil);
+        void EditCar(string id, Automobil updatedAutomobil);
+        void DeleteCar(int id);
 
 
 

@@ -3,31 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
+using System.Collections.ObjectModel;
+using Google.Protobuf.WellKnownTypes;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace SR31_2023_POP2024.Repository
 {
     public abstract class BaseRepository
     {
-        public static string DATA_LOCATION = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data");
-        protected string CARS_LOCATION = Path.Combine(DATA_LOCATION, "cars.csv");
-        protected string BRANDS_LOCATION = Path.Combine(DATA_LOCATION, "brands.csv");
+        protected string connectionString = "Data Source=localhost;Initial Catalog=POP;Integrated Security=True;Trust Server Certificate=True";
 
-
-
-        public static void EnsureDataDirExists()
+        protected SqlConnection GetConnection()
         {
-            if (!Directory.Exists(DATA_LOCATION))
-            {
-                Directory.CreateDirectory(DATA_LOCATION);
-            }
+            return new SqlConnection(connectionString);
+        }
 
-            if (!File.Exists(Path.Combine(DATA_LOCATION, "cars.csv")))
+        protected List<T> ExecuteQuery<T>(string query, Func<SqlDataReader, T> mapFunction)
+        {
+            using (var connection = GetConnection())
             {
-                using (var stream = new StreamWriter(Path.Combine(DATA_LOCATION, "cars.csv"), true))
+                connection.Open();
+                var command = new SqlCommand(query, connection);
+                using (var reader = command.ExecuteReader())
                 {
-                    stream.Close();
+                    var result = new List<T>();
+                    while (reader.Read())
+                    {
+                        result.Add(mapFunction(reader));
+                    }
+                    return result;
                 }
             }
         }
+
+        protected void ExecuteNonQuery(string query)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                var command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+            }
+        }
+
+     
     }
 }

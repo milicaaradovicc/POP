@@ -8,10 +8,12 @@ namespace SR31_2023_POP2024
 {
     public class Kupac{
         public string Ime { get; set; }
+        public string Prezime { get; set; }
         public string BrojLicneKarte  { get; set; }
 
-        public Kupac(string ime, string brojLicneKarte){
+        public Kupac(string ime,string prezime, string brojLicneKarte){
             Ime = ime;
+            Prezime = prezime;
             BrojLicneKarte = brojLicneKarte;
         }
     }

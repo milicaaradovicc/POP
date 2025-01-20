@@ -6,217 +6,211 @@ using System.Threading.Tasks;
 using SR31_2023_POP2024.Service;
 using SR31_2023_POP2024.Repository;
 
-namespace SR31_2023_POP2024.Consoles
-{
-    public class CarConsoleManager
-    {
-        private readonly ICarService _carService = new CarService();
+//namespace SR31_2023_POP2024.Consoles
+//{
+  //  public class CarConsoleManager
+   // {
+      //  private readonly ICarService _carService = new CarService();
 
-        public void ManageCars()
-        {
-            string command;
-            do
-            {
-                command = PrintMenuGetCommand();
-                HandleCommand(command);
-            }
-            while (command != "x");
+        //public void ManageCars()
+        //{
+        //    string command;
+        //    do
+        //    {
+        //        command = PrintMenuGetCommand();
+        //        HandleCommand(command);
+        //    }
+        //    while (command != "x");
+        //}
 
-        }
+        //private string PrintMenuGetCommand()
+        //{
+        //    Console.WriteLine("Odaberite opciju nad automobilima");
+        //    Console.WriteLine();
+        //    Console.WriteLine("1. Ispis svih automobila");
+        //    Console.WriteLine("2. Ispis jednog automobila");
+        //    Console.WriteLine("3. Dodavanje automobila");
+        //    Console.WriteLine("4. Izmena automobila");
+        //    Console.WriteLine("5. Brisanje automobila");
+        //    Console.WriteLine();
+        //    Console.WriteLine("x. Izadji");
+        //    Console.WriteLine();
 
-        private string PrintMenuGetCommand()
-        {
-            Console.WriteLine("Odaberite opciju nad automobilima");
-            Console.WriteLine();
-            Console.WriteLine("1. Ispis svih automobila");
-            Console.WriteLine("2. Ispis jednog automobila");
-            Console.WriteLine("3. Dodavanje automobila");
-            Console.WriteLine("4. Izmena automobila");
-            Console.WriteLine("5. Brisanje automobila");
-            Console.WriteLine();
-            Console.WriteLine("x. Izadji");
-            Console.WriteLine();
+        //    var command = Console.ReadLine();
+        //    return command;
+        //}
 
-            var command = Console.ReadLine();
-            return command;
-        }
+        //private void HandleCommand(string command)
+        //{
+        //    switch (command)
+        //    {
+        //        case "1":
+        //            PrintCars();
+        //            break;
+        //        case "2":
+        //            PrintCar();
+        //            break;
+        //        case "3":
+        //            AddCar();
+        //            break;
+        //        case "4":
+        //            EditCar();
+        //            break;
+        //        case "5":
+        //            DeleteCar();
+        //            break;
+        //        case "x":
+        //            Console.WriteLine("Izlazak iz programa.");
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
 
-        private void HandleCommand(string command)
-        {
-            switch (command)
-            {
-                case "1":
-                    PrintCars();
-                    break;
-                case "2":
-                    PrintCar();
-                    break;
-                case "3":
-                    AddCar();
-                    break;
-                case "4":
-                    EditCar();
-                    break;
-                case "5":
-                    DeleteCar();
-                    break;
-                case "x":
-                    Console.WriteLine("Izlazak iz programa.");
-                    break;
-                default:
-                    break;
-            }
-        }
+        //private void PrintCars()
+        //{
+        //    var cars = _carService.GetAllCars().Where(car => !car.Deleted).ToList();
 
-        private void PrintCars()
-        {
-            var cars = _carService.GetAllCars().Where(car => !car.Deleted).ToList();
+        //    if (cars.Count == 0)
+        //    {
+        //        Console.WriteLine("Nema automobila za pretragu.");
+        //        return;
+        //    }
 
-            if (cars.Count == 0)
-            {
-                Console.WriteLine("Nema automobila za pretragu.");
-                return;
-            }
+        //    foreach (var car in cars)
+        //    {
+        //        Console.WriteLine($"ID: {car.ID}, Marka: {car.Marka.Naziv}, Država nastanka: {car.Marka.DrzavaNastanka}, Model: {car.Model.NazivModela}, Godište: {car.Godiste}, Snaga: {car.Snaga}, Pogon: {car.Pogon}");
+        //    }
+        //}
 
-            foreach (var car in cars)
-            {
-                Console.WriteLine($"ID: {car.ID}, Marka: {car.Marka.Naziv}, Država nastanka: {car.Marka.DrzavaNastanka}, Model: {car.Model.NazivModela}, Godište: {car.Godiste}, Snaga: {car.Snaga}, Pogon: {car.Pogon}");
-            }
-        }
+        //private void PrintCar()
+        //{
+        //    Console.WriteLine("Unesite ID automobila:");
+        //    var id = Console.ReadLine();
+        //    var car = _carService.GetCar(id);
 
-        private void PrintCar()
-        {
-            Console.WriteLine("Unesite ID automobila:");
-            var id = Console.ReadLine();
-            var car = _carService.GetCar(id);
+        //    if (car == null)
+        //    {
+        //        Console.WriteLine("Automobil sa unetim id-jem nije pronadjen");
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine($"ID: {car.ID}, Marka: {car.Marka.Naziv}, Država nastanka: {car.Marka.DrzavaNastanka}, Model: {car.Model.NazivModela}, Godište: {car.Godiste}, Snaga: {car.Snaga}, Pogon: {car.Pogon}");
+        //    }
+        //}
 
-            if (car == null)
-            {
-                Console.WriteLine("Automobil sa unetim id-jem nije pronadjen");
-            }
-            else
-            {
-                Console.WriteLine($"ID: {car.ID}, Marka: {car.Marka.Naziv}, Država nastanka: {car.Marka.DrzavaNastanka}, Model: {car.Model.NazivModela}, Godište: {car.Godiste}, Snaga: {car.Snaga}, Pogon: {car.Pogon}");
-            }
-        }
-
-        private static int nextId = 1;
-        private static HashSet<int> usedIds = new HashSet<int>();
+        //private static int nextId = 1;
+        //private static HashSet<int> usedIds = new HashSet<int>();
 
 
-        private void AddCar()
-        {
-            while (usedIds.Contains(nextId))
-            {
-                nextId++;  
-            }
+        //private void AddCar()
+        //{
+        //    while (usedIds.Contains(nextId))
+        //    {
+        //        nextId++;  
+        //    }
 
-            string id = nextId.ToString();
-            usedIds.Add(nextId); 
+        //    string id = nextId.ToString();
+        //    usedIds.Add(nextId); 
 
-            nextId++;
+        //    nextId++;
 
-            Console.WriteLine("Unesite naziv marke: ");
-            var markaNaziv = Console.ReadLine();
+        //    Console.WriteLine("Unesite naziv marke: ");
+        //    var markaNaziv = Console.ReadLine();
 
-            Console.WriteLine("Unesite državu nastanka automobila:");
-            var drzavaNastanka = Console.ReadLine();
+        //    Console.WriteLine("Unesite državu nastanka automobila:");
+        //    var drzavaNastanka = Console.ReadLine();
 
-            Console.WriteLine("Unesite naziv modela: ");
-            var nazivModela = Console.ReadLine();
+        //    Console.WriteLine("Unesite naziv modela: ");
+        //    var nazivModela = Console.ReadLine();
 
-            Console.WriteLine("Unesite godiste automobila: ");
-            var godiste = int.Parse(Console.ReadLine());
+        //    Console.WriteLine("Unesite godiste automobila: ");
+        //    var godiste = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Unesite snagu automobila: ");
-            var snaga = int.Parse(Console.ReadLine());
+        //    Console.WriteLine("Unesite snagu automobila: ");
+        //    var snaga = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Unesite tip pogona: ");
-            var pogon = Console.ReadLine();
+        //    Console.WriteLine("Unesite tip pogona: ");
+        //    var pogon = Console.ReadLine();
 
-            var automobil = new Automobil(
-                id, 
-                new MarkaAutomobila(markaNaziv, drzavaNastanka),
-                new ModelAutomobila(new MarkaAutomobila(markaNaziv, drzavaNastanka), nazivModela), 
-                godiste,
-                snaga,
-                pogon,
-                false
-            );
+        //    var automobil = new Automobil(
+        //        id, 
+        //        new MarkaAutomobila(markaNaziv, drzavaNastanka),
+        //        new ModelAutomobila(new MarkaAutomobila(markaNaziv, drzavaNastanka), nazivModela), 
+        //        godiste,
+        //        snaga,
+        //        pogon,
+        //        false
+        //    );
 
-            _carService.AddCar(automobil);
-            _carService.SaveCarsToCsv();
-        }
+        //    _carService.AddCar(automobil);
+        //    _carService.SaveCarsToCsv();
+        //}
 
-        private void EditCar()
-        {
-            Console.WriteLine("Unesite ID automobila koji želite da izmenite:");
-            var id = Console.ReadLine();
-            var car = _carService.GetCar(id);
+        //private void EditCar()
+        //{
+        //    Console.WriteLine("Unesite ID automobila koji želite da izmenite:");
+        //    var id = Console.ReadLine();
+        //    var car = _carService.GetCar(id);
 
-            if (car == null)
-            {
-                Console.WriteLine("Automobil sa unetim ID-jem nije pronađen.");
-                return;
-            }
+        //    if (car == null)
+        //    {
+        //        Console.WriteLine("Automobil sa unetim ID-jem nije pronađen.");
+        //        return;
+        //    }
 
-            Console.WriteLine($"Marka: {car.Marka.Naziv}. Unesite novu marku ili pritisnite Enter za preskakanje:");
-            var novaMarka = Console.ReadLine();
-            if (!string.IsNullOrEmpty(novaMarka))
-            {
-                car.Marka.Naziv = novaMarka;
-            }
+        //    Console.WriteLine($"Marka: {car.Marka.Naziv}. Unesite novu marku ili pritisnite Enter za preskakanje:");
+        //    var novaMarka = Console.ReadLine();
+        //    if (!string.IsNullOrEmpty(novaMarka))
+        //    {
+        //        car.Marka.Naziv = novaMarka;
+        //    }
 
-            Console.WriteLine($" Država nastanka: {car.Marka.DrzavaNastanka}. Unesite novu državu nastanka ili pritisnite Enter za preskakanje:");
-            var novaDrzava = Console.ReadLine();
-            if (!string.IsNullOrEmpty(novaDrzava))
-            {
-                car.Marka.DrzavaNastanka = novaDrzava;
-            }
+        //    Console.WriteLine($" Država nastanka: {car.Marka.DrzavaNastanka}. Unesite novu državu nastanka ili pritisnite Enter za preskakanje:");
+        //    var novaDrzava = Console.ReadLine();
+        //    if (!string.IsNullOrEmpty(novaDrzava))
+        //    {
+        //        car.Marka.DrzavaNastanka = novaDrzava;
+        //    }
 
-            Console.WriteLine($"Model: {car.Model.NazivModela}. Unesite novi model ili pritisnite Enter za preskakanje:");
-            var noviModel = Console.ReadLine();
-            if (!string.IsNullOrEmpty(noviModel))
-            {
-                car.Model.NazivModela = noviModel;
-            }
+        //    Console.WriteLine($"Model: {car.Model.NazivModela}. Unesite novi model ili pritisnite Enter za preskakanje:");
+        //    var noviModel = Console.ReadLine();
+        //    if (!string.IsNullOrEmpty(noviModel))
+        //    {
+        //        car.Model.NazivModela = noviModel;
+        //    }
 
-            Console.WriteLine($"Godište: {car.Godiste}. Unesite novo godište ili pritisnite Enter za preskakanje:");
-            var novoGodisteStr = Console.ReadLine();
-            if (!string.IsNullOrEmpty(novoGodisteStr))
-            {
-                car.Godiste = int.Parse(novoGodisteStr);
-            }
+        //    Console.WriteLine($"Godište: {car.Godiste}. Unesite novo godište ili pritisnite Enter za preskakanje:");
+        //    var novoGodisteStr = Console.ReadLine();
+        //    if (!string.IsNullOrEmpty(novoGodisteStr))
+        //    {
+        //        car.Godiste = int.Parse(novoGodisteStr);
+        //    }
 
-            Console.WriteLine($"Snaga: {car.Snaga}. Unesite novu snagu ili pritisnite Enter za preskakanje:");
-            var novaSnagaStr = Console.ReadLine();
-            if (!string.IsNullOrEmpty(novaSnagaStr))
-            {
-                car.Snaga = int.Parse(novaSnagaStr);
-            }
+        //    Console.WriteLine($"Snaga: {car.Snaga}. Unesite novu snagu ili pritisnite Enter za preskakanje:");
+        //    var novaSnagaStr = Console.ReadLine();
+        //    if (!string.IsNullOrEmpty(novaSnagaStr))
+        //    {
+        //        car.Snaga = int.Parse(novaSnagaStr);
+        //    }
 
-            Console.WriteLine($"Pogon: {car.Pogon}. Unesite novi pogon ili pritisnite Enter za preskakanje:");
-            var noviPogon = Console.ReadLine();
-            if (!string.IsNullOrEmpty(noviPogon))
-            {
-                car.Pogon = noviPogon;
-            }
+        //    Console.WriteLine($"Pogon: {car.Pogon}. Unesite novi pogon ili pritisnite Enter za preskakanje:");
+        //    var noviPogon = Console.ReadLine();
+        //    if (!string.IsNullOrEmpty(noviPogon))
+        //    {
+        //        car.Pogon = noviPogon;
+        //    }
 
-            
+        //    _carService.EditCar(id, car);
+        //    _carService.SaveCarsToCsv();
+        //    Console.WriteLine("Automobil je uspešno izmenjen.");
+        //}
 
-            _carService.EditCar(id, car);
-            _carService.SaveCarsToCsv();
-            Console.WriteLine("Automobil je uspešno izmenjen.");
-        }
-
-        private void DeleteCar()
-        {
-            Console.WriteLine("Unesite ID automobila koji želite da obrišete:");
-            var id = Console.ReadLine();
-            _carService.DeleteCar(id);
-            _carService.SaveCarsToCsv();
-            Console.WriteLine("Automobil je uspešno obrisan.");
-        }
-    }
-}
-
+        //private void DeleteCar()
+        //{
+        //    Console.WriteLine("Unesite ID automobila koji želite da obrišete:");
+        //    var id = Console.ReadLine();
+        //    _carService.DeleteCar(id);
+        //    _carService.SaveCarsToCsv();
+        //    Console.WriteLine("Automobil je uspešno obrisan.");
+    

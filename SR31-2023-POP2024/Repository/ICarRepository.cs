@@ -10,9 +10,9 @@ namespace SR31_2023_POP2024.Repository
     {
         public void PersistCars(List<Automobil> model);
         public List<Automobil> GetAllCars();
-        public Automobil? GetCar(string id);
+        public Automobil? GetCar(int id);
         public void AddCar(Automobil automobil);
         public void EditCar(string id, Automobil automobil);
-        public void DeleteCar(string id);
+        public void DeleteCar(int id);
     }
 }
