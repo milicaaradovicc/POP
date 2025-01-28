@@ -119,8 +119,8 @@ namespace WPF.Windows
             carRepository.AddCar(automobil);
             MessageBox.Show("Automobil je uspešno dodat!");
 
-            var mainWindow = Application.Current.MainWindow as MainWindow;
-            mainWindow?.LoadCars();
+           // var tabela = Application.Current.MainWindow as Tabela;
+           // tabela?.LoadCars();
 
             this.Close();
         }

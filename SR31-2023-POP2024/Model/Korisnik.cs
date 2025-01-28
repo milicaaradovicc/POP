@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SR31_2023_POP2024.Model;
 
 namespace SR31_2023_POP2024
 {
@@ -22,6 +23,7 @@ namespace SR31_2023_POP2024
             Lozinka = lozinka;
             JMBG = jmbg;
             Zarada = zarada;
+  
         }
     }
 }
