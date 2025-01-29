@@ -101,5 +101,20 @@ namespace WPF.Profil
                 MessageBox.Show("Molimo izaberite korisnika za brisanje.", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        private void KorisnikEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedUser != null)
+            {
+                var editWindow = new KorisnikEdit(SelectedUser, korisnikRepository);
+                editWindow.ShowDialog();
+                UcitajKorisnike();  
+            }
+            else
+            {
+                MessageBox.Show("Molimo izaberite korisnika za izmenu.", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
     }
- }
+}

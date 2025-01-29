@@ -28,7 +28,7 @@
                 <Button Name="AddCarBtn" Content="Dodaj" Click="KorisnikAdd_Click" Width="75" />
             </Border>
             <Border Margin="5">
-                <Button Name="EditCarBtn" Content="Izmeni" Width="75" />
+                <Button Name="EditCarBtn" Content="Izmeni"  Click="KorisnikEdit_Click" Width="75" />
             </Border>
             <Border Margin="5">
                 <Button Name="DeleteCarBtn" Content="Obriši" Click="KorisnikDelete_Click" Width="75" />

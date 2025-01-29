@@ -33,7 +33,7 @@ namespace WPF.Main
             string lozinka = LozinkaPasswordBox.Password;
 
             KorisnikRepository korisnikRepo = new KorisnikRepository();
-            Korisnik korisnik = korisnikRepo.GetKorisnikByUsername(korisnickoIme); /
+            Korisnik korisnik = korisnikRepo.GetKorisnikByUsername(korisnickoIme); 
 
             if (korisnik == null)
             {

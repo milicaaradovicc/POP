@@ -25,6 +25,9 @@
     <Compile Update="Profil\KorisnikDetails.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Profil\KorisnikEdit.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Profil\ProfilWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -55,6 +58,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Profil\KorisnikDetails.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Profil\KorisnikEdit.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Profil\ProfilWindow.xaml">

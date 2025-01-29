@@ -142,5 +142,24 @@ namespace SR31_2023_POP2024.Repository
                 command.ExecuteNonQuery();
             }
         }
+
+        public void EditKorisnik(Korisnik korisnik)
+        {
+            string query = "UPDATE Korisnik SET Ime = @ime, Prezime = @prezime, KorisnickoIme = @korisnickoIme, Lozinka = @lozinka, JMBG = @jmbg WHERE KorisnickoIme = @korisnickoIme";
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ime", korisnik.Ime);
+                command.Parameters.AddWithValue("@prezime", korisnik.Prezime);
+                command.Parameters.AddWithValue("@korisnickoIme", korisnik.KorisnickoIme);
+                command.Parameters.AddWithValue("@lozinka", korisnik.Lozinka);
+                command.Parameters.AddWithValue("@jmbg", korisnik.JMBG);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
     }
 }
