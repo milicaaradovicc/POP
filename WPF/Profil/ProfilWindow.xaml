@@ -1,0 +1,43 @@
+﻿<Window x:Class="WPF.Profil.ProfilWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.Profil"
+        mc:Ignorable="d"
+        Title="Profil Korisnika" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FFFFDAB9" Offset="0"/>
+                <GradientStop Color="#FFBC8F8F" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="C:\Users\Korisnik\source\repos\sr31-2023-pop2024\SR31-2023-POP2024\img\profil1.png" Stretch="UniformToFill" Grid.Row="0" Margin="342,42,342,48"/>
+
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="301,164,0,0" Grid.RowSpan="2">
+            <TextBlock Name="ImeTextBlock" FontSize="20" />
+            <TextBlock Name="PrezimeTextBlock" FontSize="20"/>
+            <TextBlock Name="KorisnickoImeTextBlock" FontSize="20"/>
+            <TextBlock Name="JMBGTextBlock" FontSize="20"/>
+        </StackPanel>
+
+        <Menu VerticalAlignment="Top" Background="#FF834C35" Foreground="White">
+            <MenuItem Header="Upravljanje">
+                <MenuItem Header="Automobili"  Background="#FF834C35"/>
+                <MenuItem Header="Korisnici" Click="Korisnici_Click"  Background="#FF834C35"/>
+                <MenuItem Header="Zarada"  Background="#FF834C35" />
+            </MenuItem>
+            <MenuItem Header="Pocetna stranica"></MenuItem>
+            <MenuItem Header="Ponuda"></MenuItem>
+            <MenuItem Header="Logout" Click="Logout_Click"></MenuItem>
+
+
+        </Menu>
+    </Grid>
+</Window>

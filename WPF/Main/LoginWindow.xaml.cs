@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SR31_2023_POP2024.Repository;
 using SR31_2023_POP2024;
+using static SR31_2023_POP2024.Repository.KorisnikRepository;
 
 namespace WPF.Main
 {
@@ -32,17 +33,28 @@ namespace WPF.Main
             string lozinka = LozinkaPasswordBox.Password;
 
             KorisnikRepository korisnikRepo = new KorisnikRepository();
-            Korisnik korisnik = korisnikRepo.GetKorisnikByUsernameAndPassword(korisnickoIme, lozinka);
+            Korisnik korisnik = korisnikRepo.GetKorisnikByUsername(korisnickoIme); /
 
-            if (korisnik != null)
+            if (korisnik == null)
             {
-                MessageBox.Show("Uspešno ste se prijavili!");
-                // Prebaci na sledeći prozor
+                MessageBox.Show("Korisnik nije pronađen. Proverite korisničko ime.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (korisnik.Lozinka != lozinka)
+            {
+                MessageBox.Show("Pogrešna lozinka. Proverite lozinku.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                MessageBox.Show("Pogrešno korisničko ime ili lozinka.");
+                MessageBox.Show("Uspešno ste se prijavili!");
+
+                SessionManager.PrijaviKorisnika(korisnik);
+
+                MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                mainWindow?.InitializeMenu();
+
+                this.Close();
             }
         }
     }
+
 }

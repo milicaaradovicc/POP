@@ -14,8 +14,9 @@ namespace SR31_2023_POP2024
         public string Lozinka { get; set; }
         public string JMBG { get; set; }
         public decimal Zarada { get; set;}
+        public bool Deleted { get; set; }
 
-        public Korisnik(string ime,string prezime, string korisnickoIme, string lozinka, string jmbg, decimal zarada)
+        public Korisnik(string ime,string prezime, string korisnickoIme, string lozinka, string jmbg, decimal zarada, bool deleted = false)
         {
             Ime = ime;
             Prezime = prezime;
@@ -23,7 +24,7 @@ namespace SR31_2023_POP2024
             Lozinka = lozinka;
             JMBG = jmbg;
             Zarada = zarada;
-  
+            Deleted = deleted;
         }
     }
 }

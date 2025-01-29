@@ -25,11 +25,11 @@
 
             <MenuItem Header="Pocetna Stranica" Width="180"></MenuItem>
 
-            <MenuItem Header="Ponuda" Width="180"></MenuItem>
+            <MenuItem Header="Ponuda" Click="Ponuda_Click" Width="180"></MenuItem>
 
-            <MenuItem Header="Profil" Width="180"></MenuItem>
+            <MenuItem Header="Profil" Click="Profil_Click" Width="180"></MenuItem>
 
-            <MenuItem Header="Login" Click="Login_Click" Width="241"/>
+            <MenuItem x:Name="LoginMenuItem" Click="Login_Click" Width="241"/>
         </Menu>
 
      

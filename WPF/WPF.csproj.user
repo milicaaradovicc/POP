@@ -13,6 +13,21 @@
     <Compile Update="Main\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Ponuda\PonudaWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Profil\KorisniciWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Profil\KorisnikAdd.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Profil\KorisnikDetails.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Profil\ProfilWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\AddCarWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -28,6 +43,21 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Main\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Ponuda\PonudaWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Profil\KorisniciWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Profil\KorisnikAdd.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Profil\KorisnikDetails.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Profil\ProfilWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\AddCarWindow.xaml">

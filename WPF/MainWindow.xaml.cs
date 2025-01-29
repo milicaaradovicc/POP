@@ -14,6 +14,9 @@ using System.Windows.Shapes;
 using SR31_2023_POP2024.Model;
 using SR31_2023_POP2024.Repository;
 using WPF.Main;
+using WPF.Ponuda;
+using WPF.Profil;
+using static SR31_2023_POP2024.Repository.KorisnikRepository;
 
 namespace WPF
 {
@@ -28,21 +31,71 @@ namespace WPF
             SalonRepository salonRepo = new SalonRepository();
             Salon salon = salonRepo.GetSalon();
 
-            // Postavljanje podataka o salonu u TextBlock
             if (salon != null)
             {
-                SalonImeTextBlock.Text =  salon.Ime;
+                SalonImeTextBlock.Text = salon.Ime;
                 SalonAdresaTextBlock.Text = "Adresa: " + salon.Adresa;
+            }
+
+
+            InitializeMenu();
+        }
+
+        public void InitializeMenu()
+        {
+            if (SessionManager.JePrijavljen())
+            {
+                LoginMenuItem.Header = "Logout";
+            }
+            else
+            {
+                LoginMenuItem.Header = "Login";
             }
         }
 
-        
-
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            // Otvara LoginWindow kada se klikne na "Login"
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.Show(); // Otvara Login prozor
+            if (SessionManager.JePrijavljen())
+            {
+                SessionManager.OdjavitiKorisnika();
+                MessageBox.Show("Uspešno ste se odjavili!");
+                LoginMenuItem.Header = "Login"; 
+            }
+            else
+            {
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.Show();
+            }
+        }
+
+        private void Ponuda_Click(object sender, RoutedEventArgs e)
+        {
+            PonudaWindow ponudaWindow = new PonudaWindow();
+            ponudaWindow.Show();
+        }
+
+        private void Profil_Click(object sender, RoutedEventArgs e)
+        {
+            if (!SessionManager.JePrijavljen())
+            {
+                MessageBox.Show("Morate biti prijavljeni da biste pristupili profilu.");
+                return; 
+            }
+
+            ProfilWindow profilWindow = new ProfilWindow();
+            profilWindow.Show();
+        }
+
+        public void OsveziMeni()
+        {
+            if (SessionManager.JePrijavljen())
+            {
+                LoginMenuItem.Header = "Logout";
+            }
+            else
+            {
+                LoginMenuItem.Header = "Login";
+            }
         }
 
     }
