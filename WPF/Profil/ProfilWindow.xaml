@@ -29,7 +29,7 @@
 
         <Menu VerticalAlignment="Top" Background="#FF834C35" Foreground="White">
             <MenuItem Header="Upravljanje">
-                <MenuItem Header="Automobili"  Background="#FF834C35"/>
+                <MenuItem Header="Automobili" Click="Automobili_Click" Background="#FF834C35"/>
                 <MenuItem Header="Korisnici" Click="Korisnici_Click"  Background="#FF834C35"/>
                 <MenuItem Header="Zarada"  Background="#FF834C35" />
             </MenuItem>

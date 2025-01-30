@@ -53,7 +53,7 @@ namespace WPF.Profil {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WPF;component/profil/korisnikdetails.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WPF;V1.0.0.0;component/profil/korisnikdetails.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Profil\KorisnikDetails.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

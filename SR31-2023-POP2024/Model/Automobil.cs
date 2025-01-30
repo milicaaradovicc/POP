@@ -18,7 +18,7 @@ namespace SR31_2023_POP2024
         public  Pogon Pogon { get; set; }
         public bool Deleted { get; set; }
 
-
+        public string PogonDisplay => Pogon.ToString().Replace("_", " ");
         public Automobil(int id, MarkaAutomobila marka, ModelAutomobila model, int godiste, int snaga, Pogon pogon, bool deleted = false)
         {
             ID = id;

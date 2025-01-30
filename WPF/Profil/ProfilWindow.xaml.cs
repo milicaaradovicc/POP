@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SR31_2023_POP2024;
+using WPF.Profil.Automobili;
 using static SR31_2023_POP2024.Repository.KorisnikRepository;
 
 namespace WPF.Profil
@@ -58,6 +59,14 @@ namespace WPF.Profil
         {
             KorisniciWindow korisniciWindow = new KorisniciWindow();
             korisniciWindow.Show();
+
+            this.Close();
+        }
+
+        private void Automobili_Click(object sender, RoutedEventArgs e)
+        {
+            AutomobiliWindow automobiliWindow = new AutomobiliWindow();
+            automobiliWindow.Show();
 
             this.Close();
         }

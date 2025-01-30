@@ -1,0 +1,53 @@
+﻿<Window x:Class="WPF.Profil.KorisniciWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.Profil"
+        mc:Ignorable="d"
+        Title="Korisnici" Height="450" Width="800">
+    <DockPanel>
+       
+        <Menu DockPanel.Dock="Top" Background="#FF834C35" Foreground="White">
+            <MenuItem Header="Upravljanje">
+                <MenuItem Header="Automobili" Background="#FF834C35"/>
+                <MenuItem Header="Korisnici"  Background="#FF834C35"/>
+                <MenuItem Header="Zarada" Background="#FF834C35"/>
+            </MenuItem>
+            <MenuItem Header="Pocetna stranica" Click="PocetnaStranica_Click"/>
+            <MenuItem Header="Ponuda" Click="Ponuda_Click"/>
+            <MenuItem Header="Logout" Click="Logout_Click"/>
+        </Menu>
+
+      
+        <ToolBar DockPanel.Dock="Top" Background="#FFBC8F8F" Width="826">
+            <Border Margin="5">
+                <Button Name="DetailsBtn" Content="Detalji" Click="KorisnikDetails_Click" Width="75" />
+            </Border>
+            <Border Margin="5">
+                <Button Name="AddCarBtn" Content="Dodaj" Click="KorisnikAdd_Click" Width="75" />
+            </Border>
+            <Border Margin="5">
+                <Button Name="EditCarBtn" Content="Izmeni"  Click="KorisnikEdit_Click" Width="75" />
+            </Border>
+            <Border Margin="5">
+                <Button Name="DeleteCarBtn" Content="Obriši" Click="KorisnikDelete_Click" Width="75" />
+            </Border>
+        </ToolBar>
+        <Grid Margin="10">
+            <DataGrid Name="UsersDataGrid"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      FontSize="14"
+                      AlternatingRowBackground="LightGray">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*" />
+                    <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="*" />
+                    <DataGridTextColumn Header="Korisničko ime" Binding="{Binding KorisnickoIme}" Width="*" />
+                    <DataGridTextColumn Header="Lozinka" Binding="{Binding Lozinka}" Width="*" />
+                    <DataGridTextColumn Header="JMBG" Binding="{Binding JMBG}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</Window>

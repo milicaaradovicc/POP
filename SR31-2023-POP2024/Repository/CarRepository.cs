@@ -126,9 +126,9 @@ namespace SR31_2023_POP2024.Repository
 
             var query = @"
             INSERT INTO Automobil (MarkaID, ModelID, Godiste, Snaga, PogonID, Deleted) 
-            VALUES (@MarkaID, @ModelID, @Godiste, @Snaga, @PogonID, @Deleted);
-            ";
-
+            VALUES (@MarkaID, @ModelID, @Godiste, @Snaga, @PogonID, @Deleted);"+
+            "SELECT SCOPE_IDENTITY();";
+            
             using (var connection = new SqlConnection(CONNECTION_STRING))
             {
                 connection.Open();
@@ -141,7 +141,8 @@ namespace SR31_2023_POP2024.Repository
                     command.Parameters.AddWithValue("@PogonID", pogonID);
                     command.Parameters.AddWithValue("@Deleted", car.Deleted);
 
-                    command.ExecuteNonQuery();
+                    var result = command.ExecuteScalar();  // Ovo će vratiti poslednji ID
+                    car.ID = Convert.ToInt32(result);
                 }
             }
         }
