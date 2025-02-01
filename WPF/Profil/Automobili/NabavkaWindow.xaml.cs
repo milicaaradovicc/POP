@@ -25,13 +25,17 @@ namespace WPF.Profil.Automobili
         //private Automobil _automobil;
         private PoslovneInfoRepository poslovneInfoRepository;
         private Automobil? _automobil;
+        private AutomobiliWindow _automobiliWindow;
 
-        public NabavkaWindow(Automobil automobil)
+
+        public NabavkaWindow(Automobil automobil, AutomobiliWindow automobiliWindow)
         {
             InitializeComponent();
             _automobil = automobil;
             poslovneInfoRepository = new PoslovneInfoRepository();
+            _automobiliWindow = automobiliWindow; 
         }
+
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -64,8 +68,9 @@ namespace WPF.Profil.Automobili
                 MessageBox.Show("Automobil nije pravilno prosleđen.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
             poslovneInfoRepository.AddPoslovneInfo(poslovneInfo);
+
+            _automobiliWindow.LoadCars();
 
             MessageBox.Show("Poslovne informacije su uspešno dodate!");
 

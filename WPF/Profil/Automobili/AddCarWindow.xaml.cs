@@ -26,16 +26,17 @@ namespace WPF.Automobili
     public partial class AddCarWindow : Window
     {
         private CarRepository carRepository;
+        private AutomobiliWindow _automobiliWindow;
 
         private static string connectionString = "Data Source=localhost;Initial Catalog=POP;Integrated Security=True;Trust Server Certificate=True";
 
 
-        public AddCarWindow()
+        public AddCarWindow(AutomobiliWindow automobiliWindow)
         {
             InitializeComponent();
             carRepository = new CarRepository();
             LoadPogoni();
-
+            _automobiliWindow = automobiliWindow;
         }
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
@@ -111,7 +112,6 @@ namespace WPF.Automobili
                 return;
             }
             
-                // Kreiraj automobil
                 var automobil = new Automobil(
                     0,
                     marka,
@@ -122,12 +122,15 @@ namespace WPF.Automobili
                     false
                 );
 
-                carRepository.AddCar(automobil);
+               carRepository.AddCar(automobil);
 
-               NabavkaWindow nabavkaWindow = new NabavkaWindow(automobil); 
+
+            NabavkaWindow nabavkaWindow = new NabavkaWindow(automobil, _automobiliWindow);
             nabavkaWindow.Show();
 
-                this.Close();
+            _automobiliWindow.LoadCars();
+
+            this.Close();
             
         }
 

@@ -40,8 +40,6 @@ namespace WPF.Profil.Automobili
         {
             var cars = _carService.GetCarsByLoggedUser();
             CarsDataGrid.ItemsSource = cars.Cast<Automobil>().Where(car => !car.Deleted).ToList();
-
-
         }
 
         private void CarsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -64,7 +62,7 @@ namespace WPF.Profil.Automobili
 
         private void AddCarButton_Click(object sender, RoutedEventArgs e)
         {
-            AddCarWindow addCarWindow = new AddCarWindow();
+            AddCarWindow addCarWindow = new AddCarWindow(this);
             if (addCarWindow.ShowDialog() == true)
             {
                 LoadCars();
