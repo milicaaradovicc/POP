@@ -14,5 +14,6 @@ namespace SR31_2023_POP2024.Repository
         public void AddCar(Automobil automobil);
         public void EditCar(string id, Automobil automobil);
         public void DeleteCar(int id);
+        List<Automobil> GetCarsByLoggedUser();
     }
 }

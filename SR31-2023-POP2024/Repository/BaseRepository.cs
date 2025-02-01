@@ -38,17 +38,30 @@ namespace SR31_2023_POP2024.Repository
                 }
             }
         }
-
-        protected void ExecuteNonQuery(string query)
+        public List<T> ExecuteQuery<T>(string query, Func<SqlDataReader, T> mapFunction, params SqlParameter[] parameters)
         {
             using (var connection = GetConnection())
             {
                 connection.Open();
                 var command = new SqlCommand(query, connection);
-                command.ExecuteNonQuery();
+
+                if (parameters != null)
+                {
+                    command.Parameters.AddRange(parameters);
+                }
+
+                using (var reader = command.ExecuteReader())
+                {
+                    var result = new List<T>();
+                    while (reader.Read())
+                    {
+                        result.Add(mapFunction(reader));
+                    }
+                    return result;
+                }
             }
         }
 
-     
+
     }
 }

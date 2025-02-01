@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using SR31_2023_POP2024.Model;
+using static SR31_2023_POP2024.Repository.KorisnikRepository;
 
 namespace SR31_2023_POP2024.Repository
 {
@@ -69,10 +70,56 @@ namespace SR31_2023_POP2024.Repository
 
             reader.GetBoolean(reader.GetOrdinal("Deleted"))
             ));
-
-
         }
 
+        public List<Automobil> GetCarsByLoggedUser()
+        {
+            Korisnik ulogovaniKorisnik = SessionManager.GetTrenutniKorisnik();
+
+            if (ulogovaniKorisnik == null)
+            {
+                return new List<Automobil>();
+            }
+
+            KorisnikRepository korisnikRepo = new KorisnikRepository();
+            int prodavacID = korisnikRepo.GetKorisnikIdByJMBG(ulogovaniKorisnik.JMBG);
+
+            if (prodavacID == 0)
+            {
+                return new List<Automobil>();
+            }
+
+            string query = @"
+            SELECT 
+            a.ID, a.MarkaID, a.ModelID, a.Godiste, a.Snaga, a.PogonID, a.Deleted,
+            ma.Naziv AS MarkaNaziv, ma.DrzavaNastanka AS MarkaDrzava,
+            mo.NazivModela AS ModelNaziv,
+            p.Naziv AS PogonNaziv
+            FROM Automobil a
+            INNER JOIN MarkaAutomobila ma ON a.MarkaID = ma.ID
+            INNER JOIN ModelAutomobila mo ON a.ModelID = mo.ID
+            INNER JOIN Pogon p ON a.PogonID = p.ID
+            INNER JOIN PoslovneInfo pi ON a.ID = pi.AutomobilID
+            WHERE a.Deleted = 0 AND pi.ProdavacID = @ProdavacID";
+
+            return ExecuteQuery(query, reader => new Automobil(
+                reader.GetInt32(reader.GetOrdinal("ID")),
+                new MarkaAutomobila(
+                    reader.GetInt32(reader.GetOrdinal("MarkaID")),
+                    reader.GetString(reader.GetOrdinal("MarkaNaziv")),
+                    reader.GetString(reader.GetOrdinal("MarkaDrzava"))
+                ),
+                new ModelAutomobila(
+                    reader.GetInt32(reader.GetOrdinal("ModelID")),
+                    reader.GetInt32(reader.GetOrdinal("MarkaID")),
+                    reader.GetString(reader.GetOrdinal("ModelNaziv"))
+                ),
+                reader.GetInt32(reader.GetOrdinal("Godiste")),
+                reader.GetInt32(reader.GetOrdinal("Snaga")),
+                (Pogon)reader.GetInt32(reader.GetOrdinal("PogonID")),
+                reader.GetBoolean(reader.GetOrdinal("Deleted"))
+            ), new SqlParameter("@ProdavacID", prodavacID));
+        }
 
         public Automobil? GetCar(int id)
         {
@@ -117,6 +164,8 @@ namespace SR31_2023_POP2024.Repository
             return result.FirstOrDefault();
         }
 
+
+
         public void AddCar(Automobil car)
         {
             int markaID = GetMarkaID(car.Marka.Naziv, car.Marka.DrzavaNastanka);
@@ -141,7 +190,7 @@ namespace SR31_2023_POP2024.Repository
                     command.Parameters.AddWithValue("@PogonID", pogonID);
                     command.Parameters.AddWithValue("@Deleted", car.Deleted);
 
-                    var result = command.ExecuteScalar();  // Ovo će vratiti poslednji ID
+                    var result = command.ExecuteScalar(); 
                     car.ID = Convert.ToInt32(result);
                 }
             }
@@ -182,9 +231,18 @@ namespace SR31_2023_POP2024.Repository
 
         public void DeleteCar(int id)
         {
-            var query = $"UPDATE Automobil SET Deleted = 1 WHERE ID = {id}";
-            ExecuteNonQuery(query);
+            var query = "UPDATE Automobil SET Deleted = 1 WHERE ID = @ID";
+            using (var connection = new SqlConnection(CONNECTION_STRING))
+            {
+                connection.Open();
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ID", id);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
+
 
         // public string GetNextCarId()
         // {

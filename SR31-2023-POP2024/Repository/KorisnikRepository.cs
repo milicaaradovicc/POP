@@ -42,7 +42,6 @@ namespace SR31_2023_POP2024.Repository
             }
         }
 
-
         public List<Korisnik> GetAllKorisnici()
         {
             List<Korisnik> korisnici = new List<Korisnik>();
@@ -116,6 +115,20 @@ namespace SR31_2023_POP2024.Repository
                 return _prijavljeniKorisnik;
             }
 
+        }
+        public int GetKorisnikIdByJMBG(string jmbg)
+        {
+            string query = "SELECT ID FROM Korisnik WHERE JMBG = @JMBG";
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@JMBG", jmbg);
+
+                var result = command.ExecuteScalar();
+                return result != null ? Convert.ToInt32(result) : 0;
+            }
         }
 
         public bool JMBGExists(string jmbg)

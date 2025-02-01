@@ -41,6 +41,11 @@ namespace SR31_2023_POP2024.Service
         {
             _carRepository.PersistCars(cars);
         }
+        public List<Automobil> GetCarsByLoggedUser()
+        {
+            return _carRepository.GetCarsByLoggedUser();
+        }
+
 
 
         // public void SaveCarsToCsv()

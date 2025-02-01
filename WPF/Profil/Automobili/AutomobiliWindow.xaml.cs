@@ -38,11 +38,9 @@ namespace WPF.Profil.Automobili
 
         public void LoadCars()
         {
-            var cars = _carService.GetAllCars();
+            var cars = _carService.GetCarsByLoggedUser();
+            CarsDataGrid.ItemsSource = cars.Cast<Automobil>().Where(car => !car.Deleted).ToList();
 
-
-
-            CarsDataGrid.ItemsSource = cars.Where(car => !car.Deleted).ToList();
 
         }
 
