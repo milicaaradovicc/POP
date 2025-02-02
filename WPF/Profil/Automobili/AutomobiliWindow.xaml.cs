@@ -145,5 +145,20 @@ namespace WPF.Profil.Automobili
             PonudaWindow ponudaWindow = new PonudaWindow();
             ponudaWindow.Show();
         }
+
+        private void PoslovneInfo_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedCar = CarsDataGrid.SelectedItem as Automobil;
+
+            if (selectedCar != null)
+            {
+                var nabavkaInfoWindow = new NabavkaInfo(selectedCar);
+                nabavkaInfoWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Morate prvo selektovati automobil.");
+            }
+        }
     }
-}
+   }

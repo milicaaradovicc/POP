@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using SR31_2023_POP2024.Model;
 
 namespace SR31_2023_POP2024.Repository
 {
+
+
     public class PoslovneInfoRepository : BaseRepository
     {
         public void AddPoslovneInfo(PoslovneInfo poslovneInfo)
@@ -45,13 +48,199 @@ namespace SR31_2023_POP2024.Repository
                 command.Parameters.AddWithValue("@Prodato", poslovneInfo.Prodato);
                 command.Parameters.AddWithValue("@CenaProdaje", poslovneInfo.CenaProdaje);
                 command.Parameters.AddWithValue("@DatumProdaje", poslovneInfo.DatumProdaje ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@ProdavacID", prodavacID); 
+                command.Parameters.AddWithValue("@ProdavacID", prodavacID);
                 command.Parameters.AddWithValue("@AutomobilID", poslovneInfo.Automobil.ID);
 
                 command.ExecuteNonQuery();
             }
         }
 
-    }
+        public List<PoslovneInfo> GetAllPoslovneInfo()
+        {
+            string query = @"
+            SELECT 
+                p.ID,
+                p.CenaNabavke, 
+                p.DatumNabavke, 
+                p.Prodato, 
+                p.CenaProdaje, 
+                p.DatumProdaje, 
+                p.ProdavacID, 
+                p.KupacID, 
+                p.AutomobilID,
+                k.Ime AS Ime, 
+                k.Prezime AS Prezime, 
+                k.JMBG AS JMBG, 
+                kupac.Ime AS Ime, 
+                kupac.Prezime AS Prezime, 
+                kupac.BrojLicneKarte AS BrojLicneKarta,
+                a.ID AS AutomobilID,
+                a.MarkaID,
+                a.ModelID,
+                a.Godiste,
+                a.Snaga,
+                a.PogonID
+            FROM 
+                PoslovneInfo p
+            INNER JOIN 
+                Korisnik k ON p.ProdavacID = k.ID
+            LEFT JOIN 
+                Kupcac kupac ON p.KupacID = kupac.ID
+            INNER JOIN 
+                Automobil a ON p.AutomobilID = a.ID
+            WHERE 
+                a.Deleted = 0";
 
+            return ExecuteQuery(query, reader =>
+            {
+                var prodavac = new Korisnik(
+                    reader.GetString(reader.GetOrdinal("ProdavacIme")),
+                    reader.GetString(reader.GetOrdinal("ProdavacPrezime")),
+                    "", 
+                    "", 
+                    reader.GetString(reader.GetOrdinal("ProdavacJMBG")),
+                    0, 
+                    false 
+                );
+
+                var kupac = reader.IsDBNull(reader.GetOrdinal("KupacIme")) ? null : new Kupac(
+                    reader.GetString(reader.GetOrdinal("KupacIme")),
+                    reader.GetString(reader.GetOrdinal("KupacPrezime")),
+                    reader.GetString(reader.GetOrdinal("KupacLicnaKarta"))
+                );
+
+                var automobil = new Automobil(
+                 reader.GetInt32(reader.GetOrdinal("AutomobilID")),
+                 new MarkaAutomobila(
+                     reader.GetInt32(reader.GetOrdinal("MarkaID")),
+                     reader.GetString(reader.GetOrdinal("MarkaNaziv")), 
+                     reader.GetString(reader.GetOrdinal("MarkaDrzava")) 
+                 ),
+                 new ModelAutomobila(
+                     reader.GetInt32(reader.GetOrdinal("ModelID")),
+                     reader.GetInt32(reader.GetOrdinal("MarkaID")),
+                     ""
+                 ),
+                 reader.GetInt32(reader.GetOrdinal("Godiste")),
+                 reader.GetInt32(reader.GetOrdinal("Snaga")),
+                 (Pogon)reader.GetInt32(reader.GetOrdinal("PogonID")),
+                 false // Deleted
+             );
+
+                return new PoslovneInfo(
+                    reader.GetDecimal(reader.GetOrdinal("CenaNabavke")),
+                    reader.GetDateTime(reader.GetOrdinal("DatumNabavke")),
+                    reader.GetBoolean(reader.GetOrdinal("Prodato")),
+                    reader.GetDecimal(reader.GetOrdinal("CenaProdaje")),
+                    reader.IsDBNull(reader.GetOrdinal("DatumProdaje")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("DatumProdaje")),
+                    prodavac,
+                    kupac,
+                    automobil
+                );
+            });
+        }
+
+        public PoslovneInfo? GetPoslovneInfo(int automobilId)
+        {
+            string query = @"
+       SELECT 
+            p.ID,
+            p.CenaNabavke, 
+            p.DatumNabavke, 
+            p.Prodato, 
+            p.CenaProdaje, 
+            p.DatumProdaje, 
+            p.ProdavacID, 
+            p.KupacID, 
+            p.AutomobilID,
+            k.Ime AS Ime, 
+            k.Prezime AS Prezime, 
+            k.JMBG AS JMBG, 
+            kupac.Ime AS KupacIme, 
+            kupac.Prezime AS KupacPrezime, 
+            kupac.BrojLicneKarte AS KupacLicnaKarta,
+            a.ID AS AutomobilID,
+            a.MarkaID,
+            a.ModelID,
+            a.Godiste,
+            a.Snaga,
+            a.PogonID,
+            m.Naziv AS MarkaNaziv,  -- Dodajte ovo jer je potrebno dobiti naziv marke
+            m.DrzavaNastanka AS MarkaDrzava -- Dodajte ovo jer je potrebno dobiti državu marke
+        FROM 
+            PoslovneInfo p
+        INNER JOIN 
+            Korisnik k ON p.ProdavacID = k.ID
+        LEFT JOIN 
+            Kupac kupac ON p.KupacID = kupac.ID
+        INNER JOIN 
+            Automobil a ON p.AutomobilID = a.ID
+        INNER JOIN 
+            MarkaAutomobila m ON a.MarkaID = m.ID -- Povezivanje sa tabelom MarkaAutomobila
+        WHERE 
+            p.AutomobilID = @AutomobilID;";
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@AutomobilID", automobilId);  
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read()) 
+                    {
+                        var prodavac = new Korisnik(
+                            reader.GetString(reader.GetOrdinal("Ime")),
+                            reader.GetString(reader.GetOrdinal("Prezime")),
+                            "", 
+                            "", 
+                            reader.GetString(reader.GetOrdinal("JMBG")),
+                            0, 
+                            false 
+                        );
+
+                        var kupac = reader.IsDBNull(reader.GetOrdinal("KupacIme")) ? null : new Kupac(
+                            reader.GetString(reader.GetOrdinal("KupacIme")),
+                            reader.GetString(reader.GetOrdinal("KupacPrezime")),
+                            reader.GetString(reader.GetOrdinal("KupacLicnaKarta"))
+                        );
+
+                        var automobil = new Automobil(
+                            reader.GetInt32(reader.GetOrdinal("AutomobilID")),
+                            new MarkaAutomobila(
+                                reader.GetInt32(reader.GetOrdinal("MarkaID")),
+                                reader.GetString(reader.GetOrdinal("MarkaNaziv")), 
+                                reader.GetString(reader.GetOrdinal("MarkaDrzava"))
+                            ),
+                            new ModelAutomobila(
+                                reader.GetInt32(reader.GetOrdinal("ModelID")),
+                                reader.GetInt32(reader.GetOrdinal("MarkaID")), 
+                                ""
+                            ),
+                            reader.GetInt32(reader.GetOrdinal("Godiste")),
+                            reader.GetInt32(reader.GetOrdinal("Snaga")),
+                            (Pogon)reader.GetInt32(reader.GetOrdinal("PogonID")),
+                            false // Deleted
+                        );
+
+                        return new PoslovneInfo(
+                            reader.GetDecimal(reader.GetOrdinal("CenaNabavke")),
+                            reader.GetDateTime(reader.GetOrdinal("DatumNabavke")),
+                            reader.GetBoolean(reader.GetOrdinal("Prodato")),
+                            reader.GetDecimal(reader.GetOrdinal("CenaProdaje")),
+                            reader.IsDBNull(reader.GetOrdinal("DatumProdaje")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("DatumProdaje")),
+                            prodavac,
+                            kupac,
+                            automobil
+                        );
+                    }
+                }
+            }
+
+            return null; 
+        }
+
+
+    }
 }

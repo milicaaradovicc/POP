@@ -23,7 +23,7 @@
                 <Button Name="DetailsBtn" Content="Detalji" Width="75" Click="DetailsButton_Click"/>
             </Border>
             <Border>
-                <Button Name="InfoCarBtn" Content="Poslovne informacije" Margin="5" Width="120" />
+                <Button Name="InfoCarBtn" Content="Poslovne informacije" Click="PoslovneInfo_Click" Margin="5" Width="120" />
             </Border>
             <Border Margin="5">
                 <Button Name="AddCarBtn" Content="Dodaj"  Width="75" Click="AddCarButton_Click"/>
@@ -33,6 +33,9 @@
             </Border>
             <Border>
                 <Button Name="DeleteCarBtn" Content="Obriši" Margin="5" Width="75" Click="DeleteCarButton_Click"/>
+            </Border>
+            <Border>
+                <Button Name="SellCarBtn" Content="Prodaj" Margin="5" Width="75"></Button>
             </Border>
         </ToolBar>
 

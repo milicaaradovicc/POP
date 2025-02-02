@@ -16,6 +16,9 @@
     <Compile Update="Ponuda\PonudaWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Profil\Automobili\NabavkaInfo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Profil\Automobili\NabavkaWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -40,6 +43,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Ponuda\PonudaWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Profil\Automobili\NabavkaInfo.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Profil\Automobili\NabavkaWindow.xaml">

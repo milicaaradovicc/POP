@@ -112,3 +112,5 @@ C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\re
 C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\WPF.pdb
 C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\WPF.genruntimeconfig.cache
 C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\ref\WPF.dll
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\Profil\Automobili\NabavkaInfo.g.cs
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\Profil\Automobili\NabavkaInfo.baml

@@ -26,5 +26,7 @@ namespace SR31_2023_POP2024
             Zarada = zarada;
             Deleted = deleted;
         }
+
+
     }
 }
