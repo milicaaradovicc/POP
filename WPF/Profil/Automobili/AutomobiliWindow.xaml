@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WPF.Profil.Automobili"
         mc:Ignorable="d"
         Title="Automobili" Height="450" Width="800">
+    
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="#FF834C35" Foreground="White">
             <MenuItem Header="Upravljanje">
@@ -35,7 +36,7 @@
                 <Button Name="DeleteCarBtn" Content="Obriši" Margin="5" Width="75" Click="DeleteCarButton_Click"/>
             </Border>
             <Border>
-                <Button Name="SellCarBtn" Content="Prodaj" Margin="5" Width="75"></Button>
+                <Button Name="SellCarBtn" Content="Prodaj" Margin="5" Width="75" Click="SellCarButton_Click"/>
             </Border>
         </ToolBar>
 
@@ -44,7 +45,8 @@
             AutoGenerateColumns="False"
             Margin="10"
             IsReadOnly="True"
-            FontSize="14">
+            FontSize="14"
+            LoadingRow="CarsDataGrid_LoadingRow">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="*" Visibility="Collapsed" />
                 <DataGridTextColumn Header="Marka" Binding="{Binding Marka.Naziv}" Width="*" />

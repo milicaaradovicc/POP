@@ -174,5 +174,21 @@ namespace SR31_2023_POP2024.Repository
             }
         }
 
+        public void UpdateEarnings(string jmbg, decimal zarada)
+        {
+            string query = "UPDATE Korisnik SET Zarada = Zarada + @Zarada WHERE JMBG = @JMBG";
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Zarada", zarada);
+                command.Parameters.AddWithValue("@JMBG", jmbg);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
     }
 }
+

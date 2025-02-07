@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using SR31_2023_POP2024.Model;
 
+
 namespace SR31_2023_POP2024.Repository
 {
 
@@ -55,31 +56,14 @@ namespace SR31_2023_POP2024.Repository
             }
         }
 
+
         public List<PoslovneInfo> GetAllPoslovneInfo()
         {
             string query = @"
             SELECT 
-                p.ID,
-                p.CenaNabavke, 
-                p.DatumNabavke, 
-                p.Prodato, 
-                p.CenaProdaje, 
-                p.DatumProdaje, 
-                p.ProdavacID, 
-                p.KupacID, 
-                p.AutomobilID,
-                k.Ime AS Ime, 
-                k.Prezime AS Prezime, 
-                k.JMBG AS JMBG, 
-                kupac.Ime AS Ime, 
-                kupac.Prezime AS Prezime, 
-                kupac.BrojLicneKarte AS BrojLicneKarta,
-                a.ID AS AutomobilID,
-                a.MarkaID,
-                a.ModelID,
-                a.Godiste,
-                a.Snaga,
-                a.PogonID
+                p.ID, p.CenaNabavke, p.DatumNabavke, p.Prodato, p.CenaProdaje, p.DatumProdaje, p.ProdavacID,p.KupacID, p.AutomobilID,
+                k.Ime AS Ime, k.Prezime AS Prezime, k.JMBG AS JMBG, kupac.Ime AS Ime, kupac.Prezime AS Prezime, kupac.BrojLicneKarte AS BrojLicneKarta,
+                a.ID AS AutomobilID, a.MarkaID, a.ModelID, a.Godiste, a.Snaga, a.PogonID
             FROM 
                 PoslovneInfo p
             INNER JOIN 
@@ -96,11 +80,11 @@ namespace SR31_2023_POP2024.Repository
                 var prodavac = new Korisnik(
                     reader.GetString(reader.GetOrdinal("ProdavacIme")),
                     reader.GetString(reader.GetOrdinal("ProdavacPrezime")),
-                    "", 
-                    "", 
+                    "",
+                    "",
                     reader.GetString(reader.GetOrdinal("ProdavacJMBG")),
-                    0, 
-                    false 
+                    0,
+                    false
                 );
 
                 var kupac = reader.IsDBNull(reader.GetOrdinal("KupacIme")) ? null : new Kupac(
@@ -113,8 +97,8 @@ namespace SR31_2023_POP2024.Repository
                  reader.GetInt32(reader.GetOrdinal("AutomobilID")),
                  new MarkaAutomobila(
                      reader.GetInt32(reader.GetOrdinal("MarkaID")),
-                     reader.GetString(reader.GetOrdinal("MarkaNaziv")), 
-                     reader.GetString(reader.GetOrdinal("MarkaDrzava")) 
+                     reader.GetString(reader.GetOrdinal("MarkaNaziv")),
+                     reader.GetString(reader.GetOrdinal("MarkaDrzava"))
                  ),
                  new ModelAutomobila(
                      reader.GetInt32(reader.GetOrdinal("ModelID")),
@@ -143,30 +127,12 @@ namespace SR31_2023_POP2024.Repository
         public PoslovneInfo? GetPoslovneInfo(int automobilId)
         {
             string query = @"
-       SELECT 
-            p.ID,
-            p.CenaNabavke, 
-            p.DatumNabavke, 
-            p.Prodato, 
-            p.CenaProdaje, 
-            p.DatumProdaje, 
-            p.ProdavacID, 
-            p.KupacID, 
-            p.AutomobilID,
-            k.Ime AS Ime, 
-            k.Prezime AS Prezime, 
-            k.JMBG AS JMBG, 
-            kupac.Ime AS KupacIme, 
-            kupac.Prezime AS KupacPrezime, 
-            kupac.BrojLicneKarte AS KupacLicnaKarta,
-            a.ID AS AutomobilID,
-            a.MarkaID,
-            a.ModelID,
-            a.Godiste,
-            a.Snaga,
-            a.PogonID,
-            m.Naziv AS MarkaNaziv,  -- Dodajte ovo jer je potrebno dobiti naziv marke
-            m.DrzavaNastanka AS MarkaDrzava -- Dodajte ovo jer je potrebno dobiti državu marke
+        SELECT 
+            p.ID, p.CenaNabavke, p.DatumNabavke, p.Prodato, p.CenaProdaje, p.DatumProdaje, p.ProdavacID, p.KupacID, p.AutomobilID,
+            k.Ime AS Ime, k.Prezime AS Prezime, k.JMBG AS JMBG, kupac.Ime AS KupacIme, kupac.Prezime AS KupacPrezime, kupac.BrojLicneKarte AS KupacLicnaKarta,
+            a.ID AS AutomobilID, a.MarkaID, a.ModelID, a.Godiste, a.Snaga, a.PogonID,
+            m.Naziv AS MarkaNaziv,  
+            m.DrzavaNastanka AS MarkaDrzava 
         FROM 
             PoslovneInfo p
         INNER JOIN 
@@ -176,7 +142,7 @@ namespace SR31_2023_POP2024.Repository
         INNER JOIN 
             Automobil a ON p.AutomobilID = a.ID
         INNER JOIN 
-            MarkaAutomobila m ON a.MarkaID = m.ID -- Povezivanje sa tabelom MarkaAutomobila
+            MarkaAutomobila m ON a.MarkaID = m.ID 
         WHERE 
             p.AutomobilID = @AutomobilID;";
 
@@ -184,20 +150,20 @@ namespace SR31_2023_POP2024.Repository
             {
                 connection.Open();
                 var command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@AutomobilID", automobilId);  
+                command.Parameters.AddWithValue("@AutomobilID", automobilId);
 
                 using (var reader = command.ExecuteReader())
                 {
-                    if (reader.Read()) 
+                    if (reader.Read())
                     {
                         var prodavac = new Korisnik(
                             reader.GetString(reader.GetOrdinal("Ime")),
                             reader.GetString(reader.GetOrdinal("Prezime")),
-                            "", 
-                            "", 
+                            "",
+                            "",
                             reader.GetString(reader.GetOrdinal("JMBG")),
-                            0, 
-                            false 
+                            0,
+                            false
                         );
 
                         var kupac = reader.IsDBNull(reader.GetOrdinal("KupacIme")) ? null : new Kupac(
@@ -210,18 +176,18 @@ namespace SR31_2023_POP2024.Repository
                             reader.GetInt32(reader.GetOrdinal("AutomobilID")),
                             new MarkaAutomobila(
                                 reader.GetInt32(reader.GetOrdinal("MarkaID")),
-                                reader.GetString(reader.GetOrdinal("MarkaNaziv")), 
+                                reader.GetString(reader.GetOrdinal("MarkaNaziv")),
                                 reader.GetString(reader.GetOrdinal("MarkaDrzava"))
                             ),
                             new ModelAutomobila(
                                 reader.GetInt32(reader.GetOrdinal("ModelID")),
-                                reader.GetInt32(reader.GetOrdinal("MarkaID")), 
+                                reader.GetInt32(reader.GetOrdinal("MarkaID")),
                                 ""
                             ),
                             reader.GetInt32(reader.GetOrdinal("Godiste")),
                             reader.GetInt32(reader.GetOrdinal("Snaga")),
                             (Pogon)reader.GetInt32(reader.GetOrdinal("PogonID")),
-                            false // Deleted
+                            false
                         );
 
                         return new PoslovneInfo(
@@ -238,9 +204,52 @@ namespace SR31_2023_POP2024.Repository
                 }
             }
 
-            return null; 
+            return null;
+        }
+        public void UpdatePoslovneInfo(PoslovneInfo poslovneInfo)
+        {
+            using (SqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                int kupacID;
+                string checkKupacQuery = "SELECT ID FROM Kupac WHERE BrojLicneKarte = @BrojLicneKarte";
+
+                using (SqlCommand checkCommand = new SqlCommand(checkKupacQuery, conn))
+                {
+                    checkCommand.Parameters.AddWithValue("@BrojLicneKarte", poslovneInfo.Kupac.BrojLicneKarte);
+                    var result = checkCommand.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        kupacID = Convert.ToInt32(result);
+                    }
+                    else
+                    {
+                        throw new Exception("Kupac sa unetim brojem lične karte ne postoji.");
+                    }
+                }
+
+                string query = @"
+                UPDATE PoslovneInfo
+                SET CenaProdaje = @CenaProdaje,
+                DatumProdaje = @DatumProdaje,
+                Prodato = 1,
+                KupacID = @KupacID
+                WHERE AutomobilID = @AutomobilID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CenaProdaje", poslovneInfo.CenaProdaje);
+                    cmd.Parameters.AddWithValue("@DatumProdaje", poslovneInfo.DatumProdaje ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@KupacID", kupacID);
+                    cmd.Parameters.AddWithValue("@AutomobilID", poslovneInfo.Automobil.ID);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
-
     }
+
 }

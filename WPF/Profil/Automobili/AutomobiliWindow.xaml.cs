@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SR31_2023_POP2024;
+using SR31_2023_POP2024.Repository;
 using SR31_2023_POP2024.Service;
 using WPF.Automobili;
 using WPF.Ponuda;
@@ -25,11 +26,14 @@ namespace WPF.Profil.Automobili
     public partial class AutomobiliWindow : Window
     {
         private readonly ICarService _carService;
+        private PoslovneInfoRepository _poslovneInfoRepository;
+
 
         public AutomobiliWindow()
         {
             InitializeComponent();
             _carService = new CarService();
+            _poslovneInfoRepository = new PoslovneInfoRepository();
             LoadCars();
             CarsDataGrid.SelectionChanged += CarsDataGrid_SelectionChanged;
         }
@@ -160,5 +164,50 @@ namespace WPF.Profil.Automobili
                 MessageBox.Show("Morate prvo selektovati automobil.");
             }
         }
+
+        private void CarsDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            var automobil = e.Row.Item as Automobil; 
+            if (automobil != null)
+            {
+            
+                var poslovneInfo = _poslovneInfoRepository.GetPoslovneInfo(automobil.ID);
+
+                if (poslovneInfo != null && poslovneInfo.Prodato)
+                {
+                    e.Row.Background = new SolidColorBrush(Colors.Red);  
+                    e.Row.Foreground = new SolidColorBrush(Colors.White); 
+                }
+                else
+                {
+                    e.Row.Background = new SolidColorBrush(Colors.LightGreen);  
+                    e.Row.Foreground = new SolidColorBrush(Colors.Black);        
+                }
+            }
+        }
+
+        private void SellCarButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedCar = CarsDataGrid.SelectedItem as Automobil;
+
+            if (selectedCar != null)
+            {
+                var poslovneInfo = _poslovneInfoRepository.GetPoslovneInfo(selectedCar.ID);
+
+                if (poslovneInfo != null && poslovneInfo.Prodato)
+                {
+                    MessageBox.Show("Ovaj automobil je već prodat i nije dostupan za prodaju.", "Automobil nije za prodaju", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    var prodajaWindow = new ProdajaWindow(selectedCar);
+                    prodajaWindow.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selektujte automobil za prodaju", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
-   }
+}
