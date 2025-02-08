@@ -39,9 +39,17 @@ namespace WPF.Profil.Automobili
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (DatumNabavkeDatePicker.SelectedDate == null || string.IsNullOrEmpty(CenaNabavkeTextBox.Text) || !decimal.TryParse(CenaNabavkeTextBox.Text, out decimal cenaNabavke))
+            if (DatumNabavkeDatePicker.SelectedDate == null || string.IsNullOrEmpty(CenaNabavkeTextBox.Text) || !decimal.TryParse(CenaNabavkeTextBox.Text, out decimal cenaNabavke)
+                || string.IsNullOrEmpty(CenaProdajeTextBox.Text) || !decimal.TryParse(CenaProdajeTextBox.Text, out decimal cenaProdaje))
             {
                 MessageBox.Show("Molimo vas da unesete validne podatke.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            DateTime datumNabavke = DatumNabavkeDatePicker.SelectedDate.Value;
+            if (datumNabavke > DateTime.Today)
+            {
+                MessageBox.Show("Nevalidan datum!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -56,7 +64,7 @@ namespace WPF.Profil.Automobili
                 cenaNabavke,
                 DatumNabavkeDatePicker.SelectedDate.Value,
                 false, 
-                0, 
+                cenaProdaje, 
                 null, 
                 ulogovaniKorisnik, 
                 null, 

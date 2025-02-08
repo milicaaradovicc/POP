@@ -39,6 +39,7 @@ namespace WPF.Profil.Automobili
             {
                 CenaNabavkeTextBlock.Text = $"{poslovneInfo.CenaNabavke:N2} €";
                 DatumNabavkeTextBlock.Text = poslovneInfo.DatumNabavke.ToShortDateString();
+                CenaProdajeTextBlock.Text = $"{poslovneInfo.CenaProdaje:N2} €";
             }
         }
     }

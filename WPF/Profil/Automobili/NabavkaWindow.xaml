@@ -13,6 +13,9 @@
         <Label Content="Cena nabavke:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,80,0,0"/>
         <TextBox Name="CenaNabavkeTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="150,80,0,0"/>
 
-        <Button Name="SaveButton" Content="Dodaj " HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="30" Margin="150,120,0,0" Click="SaveButton_Click"/>
+        <Label Content="Cena prodaje:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,120,0,0"/>
+        <TextBox Name="CenaProdajeTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="150,120,0,0"/>
+
+        <Button Name="SaveButton" Content="Dodaj " HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="30" Margin="150,160,0,0" Click="SaveButton_Click"/>
     </Grid>
 </Window>

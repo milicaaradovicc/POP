@@ -232,9 +232,10 @@ namespace SR31_2023_POP2024.Repository
 
                 string query = @"
                 UPDATE PoslovneInfo
-                SET CenaProdaje = @CenaProdaje,
+                SET 
                 DatumProdaje = @DatumProdaje,
                 Prodato = 1,
+                CenaProdaje = @CenaProdaje,
                 KupacID = @KupacID
                 WHERE AutomobilID = @AutomobilID";
 

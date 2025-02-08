@@ -43,11 +43,14 @@ namespace WPF.Profil.Automobili
             {
                 CenaNabavkeTextBlock.Text = poslovneInfo.CenaNabavke.ToString("N2") + " €";
                 DatumNabavkeTextBlock.Text = poslovneInfo.DatumNabavke.ToString("dd.MM.yyyy");
+                CenaProdajeTextBox.Text = ((int)poslovneInfo.CenaProdaje).ToString();
+
             }
             else
             {
                 CenaNabavkeTextBlock.Text = "N/A";
                 DatumNabavkeTextBlock.Text = "N/A";
+                CenaProdajeTextBox.Text = string.Empty;
             }
         }
 
