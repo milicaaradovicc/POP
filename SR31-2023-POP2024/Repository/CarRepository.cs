@@ -48,7 +48,8 @@ namespace SR31_2023_POP2024.Repository
             INNER JOIN MarkaAutomobila ma ON a.MarkaID = ma.ID
             INNER JOIN ModelAutomobila mo ON a.ModelID = mo.ID
             INNER JOIN Pogon p ON a.PogonID = p.ID
-            WHERE a.Deleted = 0";
+            INNER JOIN PoslovneInfo pi ON a.ID = pi.AutomobilID
+            WHERE a.Deleted = 0 and pi.Prodato = 0";
 
             return ExecuteQuery(query, reader => new Automobil(
                 reader.GetInt32(reader.GetOrdinal("ID")),
@@ -175,9 +176,9 @@ namespace SR31_2023_POP2024.Repository
 
             var query = @"
             INSERT INTO Automobil (MarkaID, ModelID, Godiste, Snaga, PogonID, Deleted) 
-            VALUES (@MarkaID, @ModelID, @Godiste, @Snaga, @PogonID, @Deleted);"+
+            VALUES (@MarkaID, @ModelID, @Godiste, @Snaga, @PogonID, @Deleted);" +
             "SELECT SCOPE_IDENTITY();";
-            
+
             using (var connection = new SqlConnection(CONNECTION_STRING))
             {
                 connection.Open();
@@ -190,7 +191,7 @@ namespace SR31_2023_POP2024.Repository
                     command.Parameters.AddWithValue("@PogonID", pogonID);
                     command.Parameters.AddWithValue("@Deleted", car.Deleted);
 
-                    var result = command.ExecuteScalar(); 
+                    var result = command.ExecuteScalar();
                     car.ID = Convert.ToInt32(result);
                 }
             }
@@ -328,5 +329,7 @@ namespace SR31_2023_POP2024.Repository
 
             return modelID;
         }
+
+
     }
 }

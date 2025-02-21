@@ -209,5 +209,13 @@ namespace WPF.Profil.Automobili
                 MessageBox.Show("Selektujte automobil za prodaju", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        private void Korisnici_Click(object sender, RoutedEventArgs e)
+        {
+            KorisniciWindow korisniciWindow = new KorisniciWindow();
+            korisniciWindow.Show();
+
+            this.Close();
+        }
     }
 }

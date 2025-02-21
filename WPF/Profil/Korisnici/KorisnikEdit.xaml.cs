@@ -48,7 +48,6 @@ namespace WPF.Profil
                 valid = false;
             }
 
-            // Validacija za Korisnicko ime
             if (string.IsNullOrEmpty(KImeTextBox.Text))
             {
                 errorMessage += "Korisnicko ime, ";

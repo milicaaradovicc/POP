@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SR31_2023_POP2024;
+using WPF.Ponuda;
 using WPF.Profil.Automobili;
+using WPF.Profil.Zarada;
 using static SR31_2023_POP2024.Repository.KorisnikRepository;
 
 namespace WPF.Profil
@@ -46,11 +48,8 @@ namespace WPF.Profil
             SessionManager.OdjavitiKorisnika();
             MessageBox.Show("Uspešno ste se odjavili!");
 
-            var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            if (mainWindow != null)
-            {
-                mainWindow.OsveziMeni();
-            }
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
 
             this.Close(); 
         }
@@ -69,6 +68,24 @@ namespace WPF.Profil
             automobiliWindow.Show();
 
             this.Close();
+        }
+        private void PocetnaStranica_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            this.Close();
+        }
+        private void Ponuda_Click(object sender, RoutedEventArgs e)
+        {
+            PonudaWindow ponudaWindow = new PonudaWindow();
+            ponudaWindow.Show();
+        }
+
+        private void Zarada_Click(object sender, RoutedEventArgs e)
+        {
+            SalaryWindow salaryWindow = new SalaryWindow();
+            salaryWindow.Show();
         }
 
     }

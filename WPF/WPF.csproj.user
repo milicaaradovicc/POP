@@ -13,7 +13,13 @@
     <Compile Update="Main\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Ponuda\OfferDetails.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Ponuda\PonudaWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Ponuda\ShoppingWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Profil\Automobili\NabavkaInfo.xaml.cs">
@@ -26,6 +32,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Profil\ProfilWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Profil\Zarada\AccountWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Profil\Zarada\SalaryWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\AddCarWindow.xaml.cs">
@@ -45,7 +57,13 @@
     <Page Update="Main\LoginWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Ponuda\OfferDetails.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Ponuda\PonudaWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Ponuda\ShoppingWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Profil\Automobili\NabavkaInfo.xaml">
@@ -58,6 +76,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Profil\ProfilWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Profil\Zarada\AccountWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Profil\Zarada\SalaryWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\AddCarWindow.xaml">

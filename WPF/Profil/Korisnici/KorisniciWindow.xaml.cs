@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using SR31_2023_POP2024;
 using SR31_2023_POP2024.Repository;
 using WPF.Ponuda;
+using WPF.Profil.Automobili;
 using static SR31_2023_POP2024.Repository.KorisnikRepository;
 
 namespace WPF.Profil
@@ -137,6 +138,14 @@ namespace WPF.Profil
         {
             PonudaWindow ponudaWindow = new PonudaWindow();
             ponudaWindow.Show();
+        }
+
+        private void Automobili_Click(object sender, RoutedEventArgs e)
+        {
+            AutomobiliWindow automobiliWindow = new AutomobiliWindow();
+            automobiliWindow.Show();
+
+            this.Close();
         }
 
     }

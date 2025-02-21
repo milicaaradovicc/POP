@@ -97,3 +97,6 @@ C:\Users\Korisnik\source\repos\sr31-2023-pop2024\SR31-2023-POP2024\obj\Debug\net
 C:\Users\Korisnik\source\repos\sr31-2023-pop2024\SR31-2023-POP2024\obj\Debug\net8.0\SR31-2023-POP2024.pdb
 C:\Users\Korisnik\source\repos\sr31-2023-pop2024\SR31-2023-POP2024\obj\Debug\net8.0\SR31-2023-POP2024.genruntimeconfig.cache
 C:\Users\Korisnik\source\repos\sr31-2023-pop2024\SR31-2023-POP2024\obj\Debug\net8.0\ref\SR31-2023-POP2024.dll
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\SR31-2023-POP2024\bin\Debug\net8.0\OxyPlot.dll
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\SR31-2023-POP2024\bin\Debug\net8.0\OxyPlot.Wpf.dll
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\SR31-2023-POP2024\bin\Debug\net8.0\OxyPlot.Wpf.Shared.dll

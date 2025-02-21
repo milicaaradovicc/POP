@@ -16,6 +16,8 @@ namespace SR31_2023_POP2024
         public Kupac Kupac { get; set; }
         public Automobil Automobil { get; set; }
 
+        public decimal Profit => (CenaProdaje - CenaNabavke) * 0.25m;
+
         public PoslovneInfo(decimal cenaNabavke, DateTime datumNabavke, bool prodato,decimal cenaProdaje, 
                             DateTime? datumProdaje, Korisnik prodavac, Kupac kupac, Automobil automobil)
 

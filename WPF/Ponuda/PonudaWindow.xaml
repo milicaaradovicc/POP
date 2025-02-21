@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF.Ponuda"
         mc:Ignorable="d"
-        Title="PonudaWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Ponuda" Height="450" Width="800">
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Background="#FF834C35" Foreground="White">
+            <MenuItem Header="Pocetna stranica" Click="PocetnaStranica_Click"/>
+        </Menu>
+        <ToolBar DockPanel.Dock="Top" Background="#FFBC8F8F">
+            <Border Margin="5">
+                <Button Name="DetailsBtn" Content="Detalji" Width="75" Click="OfferDetails_Click" />
+            </Border>
+            <Border Margin="5">
+                <Button Name="BuyBtn" Content="Kupi" Width="75" Click="BuyCar_Click" />
+            </Border>
+        </ToolBar>
+
+       <DataGrid x:Name="CarsDataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Marka" Binding="{Binding Marka.Naziv}" Width="*"/>
+                <DataGridTextColumn Header="Model" Binding="{Binding Model.NazivModela}" Width="*"/>
+                <DataGridTextColumn Header="Godiste" Binding="{Binding Godiste}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
 </Window>

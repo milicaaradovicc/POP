@@ -1,0 +1,85 @@
+﻿<Window x:Class="WPF.Profil.Zarada.AccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.Profil.Zarada"
+        mc:Ignorable="d"
+        Title="AccountWindow" Height="300" Width="550">
+    <Grid>
+        <ListView Name="CarsListView" ItemsSource="{Binding PoslovneInfoDetails}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="10" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Model: " FontWeight="Bold" Width="120"/>
+                            <TextBlock Text="{Binding Automobil.Marka.Naziv}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Marka: " FontWeight="Bold" Width="120"/>
+                            <TextBlock Text="{Binding Automobil.Model.NazivModela}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Godiste: " FontWeight="Bold" Width="120"/>
+                            <TextBlock Text="{Binding Automobil.Godiste}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Snaga: " FontWeight="Bold" Width="120"/>
+                            <TextBlock Text="{Binding Automobil.Snaga}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Pogon: " FontWeight="Bold" Width="120"/>
+                            <TextBlock Text="{Binding Automobil.PogonDisplay}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Datum Nabavke: " FontWeight="Bold" Width="120"/>
+                            <TextBlock Text="{Binding DatumNabavke, StringFormat={}{0:dd.MM.yyyy}}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Cena Nabavke: " FontWeight="Bold" Width="120"/>
+                            <TextBlock Text="{Binding CenaNabavke, StringFormat={}{0:F2} €}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Datum Prodaje: " FontWeight="Bold" Width="120"/>
+                            <TextBlock Text="{Binding DatumProdaje, StringFormat={}{0:dd.MM.yyyy}}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Cena Prodaje: " FontWeight="Bold" Width="120"/>
+                            <TextBlock Text="{Binding CenaProdaje, StringFormat={}{0:F2} €}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Profit: " FontWeight="Bold" Width="120"/>
+                            <TextBlock Text="{Binding Profit, StringFormat={}{0:F2} €}" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Ime i Prezime Kupca: " FontWeight="Bold" Width="120"/>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="Kupac.Ime" />
+                                        <Binding Path="Kupac.Prezime" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Broj LK Kupca: " FontWeight="Bold" Width="120"/>
+                            <TextBlock Text="{Binding Kupac.BrojLicneKarte}" />
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>

@@ -22,9 +22,6 @@
             <TextBlock Text="Korisnicko ime: " FontWeight="Bold"/>
             <TextBlock Text="{Binding KorisnickoIme}" Margin="0,0,0,10"/>
 
-            <TextBlock Text="Lozinka:" FontWeight="Bold"/>
-            <TextBlock Text="{Binding Lozinka}" Margin="0,0,0,10"/>
-
             <TextBlock Text="JMBG:" FontWeight="Bold"/>
             <TextBlock Text="{Binding JMBG}" Margin="0,0,0,10"/>
 

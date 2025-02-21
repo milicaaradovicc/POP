@@ -116,3 +116,14 @@ C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\Pr
 C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\Profil\Automobili\NabavkaInfo.baml
 C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\Profil\Automobili\ProdajaWindow.g.cs
 C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\Profil\Automobili\ProdajaWindow.baml
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\Ponuda\OfferDetails.g.cs
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\Ponuda\OfferDetails.baml
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\Ponuda\ShoppingWindow.g.cs
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\Ponuda\ShoppingWindow.baml
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\Profil\Zarada\SalaryWindow.g.cs
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\Profil\Zarada\SalaryWindow.baml
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\bin\Debug\net8.0-windows\OxyPlot.dll
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\bin\Debug\net8.0-windows\OxyPlot.Wpf.dll
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\bin\Debug\net8.0-windows\OxyPlot.Wpf.Shared.dll
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\Profil\Zarada\AccountWindow.g.cs
+C:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\obj\Debug\net8.0-windows\Profil\Zarada\AccountWindow.baml

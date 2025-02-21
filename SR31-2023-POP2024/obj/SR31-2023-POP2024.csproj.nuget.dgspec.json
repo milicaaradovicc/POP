@@ -58,6 +58,10 @@
               "target": "Package",
               "version": "[9.1.0, )"
             },
+            "OxyPlot.Wpf": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "System.Text.Json": {
               "target": "Package",
               "version": "[9.0.1, )"

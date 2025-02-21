@@ -2,7 +2,9 @@
 
 FC:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\MainWindow.xaml;;
 FC:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\Main\LoginWindow.xaml;;
+FC:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\Ponuda\OfferDetails.xaml;;
 FC:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\Ponuda\PonudaWindow.xaml;;
+FC:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\Ponuda\ShoppingWindow.xaml;;
 FC:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\Profil\Automobili\AddCarWindow.xaml;;
 FC:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\Profil\Automobili\AutomobiliWindow.xaml;;
 FC:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\Profil\Automobili\DetailsWindow.xaml;;
@@ -15,4 +17,6 @@ FC:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\Profil\Korisnici\KorisnikA
 FC:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\Profil\Korisnici\KorisnikDetails.xaml;;
 FC:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\Profil\Korisnici\KorisnikEdit.xaml;;
 FC:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\Profil\ProfilWindow.xaml;;
+FC:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\Profil\Zarada\AccountWindow.xaml;;
+FC:\Users\Korisnik\source\repos\sr31-2023-pop2024\WPF\Profil\Zarada\SalaryWindow.xaml;;
 

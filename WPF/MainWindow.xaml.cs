@@ -72,6 +72,8 @@ namespace WPF
         {
             PonudaWindow ponudaWindow = new PonudaWindow();
             ponudaWindow.Show();
+
+            this.Close();
         }
 
         private void Profil_Click(object sender, RoutedEventArgs e)
@@ -84,6 +86,8 @@ namespace WPF
 
             ProfilWindow profilWindow = new ProfilWindow();
             profilWindow.Show();
+
+            this.Close();
         }
 
         public void OsveziMeni()

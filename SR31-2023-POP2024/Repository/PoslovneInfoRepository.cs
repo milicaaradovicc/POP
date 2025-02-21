@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using SR31_2023_POP2024.Model;
+using static SR31_2023_POP2024.Repository.KorisnikRepository;
 
 
 namespace SR31_2023_POP2024.Repository
@@ -59,21 +60,44 @@ namespace SR31_2023_POP2024.Repository
 
         public List<PoslovneInfo> GetAllPoslovneInfo()
         {
+            Korisnik ulogovaniKorisnik = SessionManager.GetTrenutniKorisnik();
+
+            if (ulogovaniKorisnik == null)
+            {
+                return new List<PoslovneInfo>();
+            }
+
+            KorisnikRepository korisnikRepo = new KorisnikRepository();
+            int prodavacID = korisnikRepo.GetKorisnikIdByJMBG(ulogovaniKorisnik.JMBG);
+
+            if (prodavacID == 0)
+            {
+                return new List<PoslovneInfo>();
+            }
+
             string query = @"
             SELECT 
-                p.ID, p.CenaNabavke, p.DatumNabavke, p.Prodato, p.CenaProdaje, p.DatumProdaje, p.ProdavacID,p.KupacID, p.AutomobilID,
-                k.Ime AS Ime, k.Prezime AS Prezime, k.JMBG AS JMBG, kupac.Ime AS Ime, kupac.Prezime AS Prezime, kupac.BrojLicneKarte AS BrojLicneKarta,
-                a.ID AS AutomobilID, a.MarkaID, a.ModelID, a.Godiste, a.Snaga, a.PogonID
+                p.ID, p.CenaNabavke, p.DatumNabavke, p.Prodato, p.CenaProdaje, p.DatumProdaje, p.ProdavacID, p.KupacID, p.AutomobilID,
+                k.Ime AS ProdavacIme, k.Prezime AS ProdavacPrezime, k.JMBG AS ProdavacJMBG, 
+                kupac.Ime AS KupacIme, kupac.Prezime AS KupacPrezime, kupac.BrojLicneKarte AS KupacBrojLicneKarte,
+                a.MarkaID, a.ModelID, a.Godiste, a.Snaga, a.PogonID,
+                m.Naziv AS MarkaNaziv, m.DrzavaNastanka AS MarkaDrzava, mo.NazivModela AS ModelNaziv
             FROM 
                 PoslovneInfo p
             INNER JOIN 
                 Korisnik k ON p.ProdavacID = k.ID
-            LEFT JOIN 
-                Kupcac kupac ON p.KupacID = kupac.ID
             INNER JOIN 
                 Automobil a ON p.AutomobilID = a.ID
+            LEFT JOIN 
+                Kupac kupac ON p.KupacID = kupac.ID
+            INNER JOIN 
+                MarkaAutomobila m ON a.MarkaID = m.ID  -- Dodajemo povezivanje sa tabelom MarkaAutomobila
+	        INNER JOIN 
+		        ModelAutomobila mo ON a.ModelID = mo.ID
             WHERE 
-                a.Deleted = 0";
+                a.Deleted = 0
+                AND p.ProdavacID = @ProdavacID
+                AND p.Prodato = 1";  
 
             return ExecuteQuery(query, reader =>
             {
@@ -90,26 +114,27 @@ namespace SR31_2023_POP2024.Repository
                 var kupac = reader.IsDBNull(reader.GetOrdinal("KupacIme")) ? null : new Kupac(
                     reader.GetString(reader.GetOrdinal("KupacIme")),
                     reader.GetString(reader.GetOrdinal("KupacPrezime")),
-                    reader.GetString(reader.GetOrdinal("KupacLicnaKarta"))
+                    reader.GetString(reader.GetOrdinal("KupacBrojLicneKarte"))
                 );
 
                 var automobil = new Automobil(
-                 reader.GetInt32(reader.GetOrdinal("AutomobilID")),
-                 new MarkaAutomobila(
-                     reader.GetInt32(reader.GetOrdinal("MarkaID")),
-                     reader.GetString(reader.GetOrdinal("MarkaNaziv")),
-                     reader.GetString(reader.GetOrdinal("MarkaDrzava"))
-                 ),
-                 new ModelAutomobila(
-                     reader.GetInt32(reader.GetOrdinal("ModelID")),
-                     reader.GetInt32(reader.GetOrdinal("MarkaID")),
-                     ""
-                 ),
-                 reader.GetInt32(reader.GetOrdinal("Godiste")),
-                 reader.GetInt32(reader.GetOrdinal("Snaga")),
-                 (Pogon)reader.GetInt32(reader.GetOrdinal("PogonID")),
-                 false // Deleted
-             );
+                    reader.GetInt32(reader.GetOrdinal("AutomobilID")),
+                    new MarkaAutomobila(
+                        reader.GetInt32(reader.GetOrdinal("MarkaID")),
+                        reader.GetString(reader.GetOrdinal("MarkaNaziv")),
+                        reader.GetString(reader.GetOrdinal("MarkaDrzava"))
+                    ),
+                    new ModelAutomobila(
+                         reader.GetInt32(reader.GetOrdinal("ModelID")),
+                         reader.GetInt32(reader.GetOrdinal("MarkaID")),
+                         reader.GetString(reader.GetOrdinal("ModelNaziv"))
+
+                    ),
+                    reader.GetInt32(reader.GetOrdinal("Godiste")),
+                    reader.GetInt32(reader.GetOrdinal("Snaga")),
+                    (Pogon)reader.GetInt32(reader.GetOrdinal("PogonID")),
+                    false // Deleted
+                );
 
                 return new PoslovneInfo(
                     reader.GetDecimal(reader.GetOrdinal("CenaNabavke")),
@@ -121,7 +146,7 @@ namespace SR31_2023_POP2024.Repository
                     kupac,
                     automobil
                 );
-            });
+            }, new SqlParameter("@ProdavacID", prodavacID)); 
         }
 
         public PoslovneInfo? GetPoslovneInfo(int automobilId)
@@ -253,4 +278,7 @@ namespace SR31_2023_POP2024.Repository
 
     }
 
+
+
 }
+
