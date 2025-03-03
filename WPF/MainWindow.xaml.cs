@@ -80,7 +80,9 @@ namespace WPF
         {
             if (!SessionManager.JePrijavljen())
             {
-                MessageBox.Show("Morate biti prijavljeni da biste pristupili profilu.");
+                MessageBox.Show("Morate biti prijavljeni da biste pristupili profilu.", "Obaveštenje",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
                 return; 
             }
 

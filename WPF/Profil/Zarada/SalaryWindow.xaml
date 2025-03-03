@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF.Profil.Zarada"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-        Title="SalaryWindow" Height="450" Width="800">
+        Title="Zarada" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -21,6 +21,7 @@
                 <MenuItem Header="Korisnici"  Click="Korisnici_Click"  Background="#FF834C35"/>
                 <MenuItem Header="Zarada" Background="#FF834C35"/>
             </MenuItem>
+            <MenuItem Header="Profil" Click="Profil_Click"></MenuItem>
             <MenuItem Header="Pocetna stranica" Click="PocetnaStranica_Click"/>
             <MenuItem Header="Ponuda" Click="Ponuda_Click"/>
             <MenuItem Header="Logout" Click="Logout_Click"/>

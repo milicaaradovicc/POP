@@ -12,8 +12,9 @@
             <MenuItem Header="Upravljanje">
                 <MenuItem Header="Automobili" Click="Automobili_Click" Background="#FF834C35"/>
                 <MenuItem Header="Korisnici"  Background="#FF834C35"/>
-                <MenuItem Header="Zarada" Background="#FF834C35"/>
+                <MenuItem Header="Zarada" Click="Zarada_Click" Background="#FF834C35"/>
             </MenuItem>
+            <MenuItem Header="Profil" Click="Profil_Click"></MenuItem>
             <MenuItem Header="Pocetna stranica" Click="PocetnaStranica_Click"/>
             <MenuItem Header="Ponuda" Click="Ponuda_Click"/>
             <MenuItem Header="Logout" Click="Logout_Click"/>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF.Profil.Zarada"
         mc:Ignorable="d"
-        Title="AccountWindow" Height="300" Width="550">
+        Title="Izvestaj o prodaji" Height="300" Width="550">
     <Grid>
         <ListView Name="CarsListView" ItemsSource="{Binding PoslovneInfoDetails}">
             <ListView.ItemTemplate>

@@ -86,6 +86,8 @@ namespace WPF.Profil
         {
             SalaryWindow salaryWindow = new SalaryWindow();
             salaryWindow.Show();
+
+            this.Close();
         }
 
     }

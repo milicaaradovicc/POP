@@ -10,25 +10,25 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <!-- Ime -->
         <Label Content="Ime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,60,0,0" FontWeight="Bold"/>
-        <TextBox Name="ImeTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="7,60,0,0" Grid.Column="1" Text="{Binding Ime}" Grid.ColumnSpan="3"/>
+        <TextBox Name="ImeTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="157,68,0,0" Text="{Binding Ime}" Grid.ColumnSpan="2"/>
 
+        <!-- Prezime -->
         <Label Content="Prezime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,100,0,0" FontWeight="Bold"/>
-        <TextBox Name="PrezimeTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="7,100,0,0" Grid.Column="1" Text="{Binding Prezime}" Grid.ColumnSpan="3"/>
+        <TextBox Name="PrezimeTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="157,104,0,0" Text="{Binding Prezime}" Grid.ColumnSpan="2"/>
 
-        <Label Content="Korisnicko Ime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,140,0,0" FontWeight="Bold"/>
-        <TextBox Name="KImeTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="7,140,0,0" Grid.Column="1" Text="{Binding KorisnickoIme}" Grid.ColumnSpan="3" />
+        <!-- Korisničko Ime -->
+        <Label Content="Korisničko Ime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,140,0,0" FontWeight="Bold"/>
+        <TextBox Name="KImeTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="157,144,0,0" Text="{Binding KorisnickoIme}" Grid.ColumnSpan="2" />
 
-        <Label Content="Lozinka:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" FontWeight="Bold"/>
-        <TextBox Name="LozinkaTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="7,180,0,0" Grid.Column="1" Text="{Binding Lozinka}" Grid.ColumnSpan="3"/>
+        <!-- JMBG -->
+        <Label Content="JMBG:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,180,0,0" FontWeight="Bold"/>
+        <TextBox Name="JMBGTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="157,180,0,0" Text="{Binding JMBG}" Grid.ColumnSpan="2"/>
 
-        <Label Content="JMBG:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,220,0,0" FontWeight="Bold"/>
-        <TextBox Name="JMBGTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="7,220,0,0" Grid.Column="1" Text="{Binding JMBG}" Grid.ColumnSpan="3"/>
-
-        <Button Name="SubmitButton" Content="Potvrdi izmene" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="30" Margin="7,278,0,0" Click="SubmitButton_Click" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <!-- Submit Button -->
+        <Button Name="SubmitButton" Content="Potvrdi izmene" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="30" Margin="157,233,0,0" Click="SubmitButton_Click" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

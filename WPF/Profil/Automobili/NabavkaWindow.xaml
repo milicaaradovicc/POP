@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF.Profil.Automobili"
         mc:Ignorable="d"
-        Title="NabavkaWindow" Height="300" Width="400">
+        Title="Poslovne informacije" Height="300" Width="400">
     <Grid>
         <Label Content="Datum nabavke:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,40,0,0"/>
         <DatePicker Name="DatumNabavkeDatePicker" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,40,0,0" Width="200"/>

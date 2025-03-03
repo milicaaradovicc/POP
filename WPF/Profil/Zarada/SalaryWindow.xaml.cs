@@ -125,6 +125,14 @@ namespace WPF.Profil.Zarada
 
             this.Close();
         }
+        private void Profil_Click(object sender, RoutedEventArgs e)
+        {
+
+            ProfilWindow profilWindow = new ProfilWindow();
+            profilWindow.Show();
+
+            this.Close();
+        }
 
     }
 

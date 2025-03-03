@@ -54,11 +54,6 @@ namespace WPF.Profil
                 valid = false;
             }
 
-            if (string.IsNullOrEmpty(LozinkaTextBox.Text))
-            {
-                errorMessage += "Lozinku, ";
-                valid = false;
-            }
 
             if (string.IsNullOrEmpty(JMBGTextBox.Text) || !long.TryParse(JMBGTextBox.Text, out long jmbg) || JMBGTextBox.Text.Length != 13)
             {
@@ -81,7 +76,6 @@ namespace WPF.Profil
             _korisnik.Ime = ImeTextBox.Text;
             _korisnik.Prezime = PrezimeTextBox.Text;
             _korisnik.KorisnickoIme = KImeTextBox.Text;
-            _korisnik.Lozinka = LozinkaTextBox.Text;
             _korisnik.JMBG = JMBGTextBox.Text;
 
             _korisnikRepository.EditKorisnik(_korisnik);  

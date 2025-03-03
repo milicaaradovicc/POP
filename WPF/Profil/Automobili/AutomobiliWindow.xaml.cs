@@ -16,6 +16,7 @@ using SR31_2023_POP2024.Repository;
 using SR31_2023_POP2024.Service;
 using WPF.Automobili;
 using WPF.Ponuda;
+using WPF.Profil.Zarada;
 using static SR31_2023_POP2024.Repository.KorisnikRepository;
 
 namespace WPF.Profil.Automobili
@@ -77,10 +78,19 @@ namespace WPF.Profil.Automobili
         {
             if (SelectedCar != null)
             {
-                var editWindow = new EditWindow(SelectedCar, _carService);
-                if (editWindow.ShowDialog() == true)
+                var poslovneInfo = _poslovneInfoRepository.GetPoslovneInfo(SelectedCar.ID);
+
+                if (poslovneInfo != null && poslovneInfo.Prodato)
                 {
-                    LoadCars();
+                    MessageBox.Show("Automobil nije dostupan za izmenu.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    var editWindow = new EditWindow(SelectedCar, _carService);
+                    if (editWindow.ShowDialog() == true)
+                    {
+                        LoadCars();
+                    }
                 }
             }
             else
@@ -88,6 +98,7 @@ namespace WPF.Profil.Automobili
                 MessageBox.Show("Molimo izaberite automobil za izmenu.", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
 
         private void DeleteCarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -161,7 +172,7 @@ namespace WPF.Profil.Automobili
             }
             else
             {
-                MessageBox.Show("Morate prvo selektovati automobil.");
+                MessageBox.Show("Odaberite automobil za više informacija.","Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -196,7 +207,7 @@ namespace WPF.Profil.Automobili
 
                 if (poslovneInfo != null && poslovneInfo.Prodato)
                 {
-                    MessageBox.Show("Ovaj automobil je već prodat i nije dostupan za prodaju.", "Automobil nije za prodaju", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Ovaj automobil je već prodat i nije dostupan za prodaju.", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
                 {
@@ -206,7 +217,7 @@ namespace WPF.Profil.Automobili
             }
             else
             {
-                MessageBox.Show("Selektujte automobil za prodaju", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Selektujte automobil za prodaju.", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -217,5 +228,23 @@ namespace WPF.Profil.Automobili
 
             this.Close();
         }
+
+        private void Zarada_Click(object sender, RoutedEventArgs e)
+        {
+            SalaryWindow salaryWindow = new SalaryWindow();
+            salaryWindow.Show();
+
+            this.Close();
+        }
+        private void Profil_Click(object sender, RoutedEventArgs e)
+        {
+
+            ProfilWindow profilWindow = new ProfilWindow();
+            profilWindow.Show();
+
+            this.Close();
+        }
+
+
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF.Automobili"
         mc:Ignorable="d"
-        Title="Details" Height="496" Width="332">
+        Title="Detalji Automobila" Height="496" Width="332">
     <Grid Margin="10">
         <StackPanel>
             <TextBlock Text="ID:" FontWeight="Bold" Visibility="Collapsed"/>

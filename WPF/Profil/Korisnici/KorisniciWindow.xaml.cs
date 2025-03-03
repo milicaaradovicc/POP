@@ -15,6 +15,7 @@ using SR31_2023_POP2024;
 using SR31_2023_POP2024.Repository;
 using WPF.Ponuda;
 using WPF.Profil.Automobili;
+using WPF.Profil.Zarada;
 using static SR31_2023_POP2024.Repository.KorisnikRepository;
 
 namespace WPF.Profil
@@ -144,6 +145,22 @@ namespace WPF.Profil
         {
             AutomobiliWindow automobiliWindow = new AutomobiliWindow();
             automobiliWindow.Show();
+
+            this.Close();
+        }
+        private void Zarada_Click(object sender, RoutedEventArgs e)
+        {
+            SalaryWindow salaryWindow = new SalaryWindow();
+            salaryWindow.Show();
+
+            this.Close();
+        }
+
+        private void Profil_Click(object sender, RoutedEventArgs e)
+        {
+
+            ProfilWindow profilWindow = new ProfilWindow();
+            profilWindow.Show();
 
             this.Close();
         }

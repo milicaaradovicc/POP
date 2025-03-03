@@ -38,7 +38,7 @@ namespace WPF.Profil.Automobili
             if (poslovneInfo != null)
             {
                 CenaNabavkeTextBlock.Text = $"{poslovneInfo.CenaNabavke:N2} €";
-                DatumNabavkeTextBlock.Text = poslovneInfo.DatumNabavke.ToShortDateString();
+                DatumNabavkeTextBlock.Text = poslovneInfo.DatumNabavke.ToString("dd/MM/yyyy");
                 CenaProdajeTextBlock.Text = $"{poslovneInfo.CenaProdaje:N2} €";
             }
         }

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF.Automobili"
         mc:Ignorable="d"
-        Title="Add Car" Height="428" Width="627">
-    <Grid>
+        Title="Dodavanje Automobila" Height="428" Width="627">
+    <Grid Margin="0,0,-80,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

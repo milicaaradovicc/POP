@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF.Automobili"
         mc:Ignorable="d"
-        Title="EditWindow" Height="450" Width="800">
+        Title="Izmena automobila" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="343*"/>
