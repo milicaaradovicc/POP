@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,7 @@ namespace WPF.Ponuda
     {
         private CarRepository _carRepository;
         public Automobil? SelectedCar { get; set; }
+        private ICollectionView _carCollectionView;
 
         public PonudaWindow()
         {
@@ -38,8 +40,51 @@ namespace WPF.Ponuda
         private void LoadCarData()
         {
             var cars = _carRepository.GetAllCars();
-
+            _carCollectionView = CollectionViewSource.GetDefaultView(cars);
             CarsDataGrid.ItemsSource = cars;
+        }
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (_carCollectionView != null)
+            {
+                string searchText = SearchTextBox.Text.ToLower(); 
+                _carCollectionView.Filter = (item) =>
+                {
+                    var car = item as Automobil;
+                    if (car != null)
+                    {
+                        return car.Marka.Naziv.ToLower().Contains(searchText) ||
+                               car.Model.NazivModela.ToLower().Contains(searchText) ||
+                               car.Godiste.ToString().Contains(searchText);
+                    }
+                    return false;
+                };
+
+                if (_carCollectionView.IsEmpty)
+                {
+                    NoResultsText.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    NoResultsText.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
+
+        private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (SearchTextBox.Text == "Pretraga...")
+            {
+                SearchTextBox.Text = "";
+            }
+        }
+
+        private void SearchTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SearchTextBox.Text))
+            {
+                SearchTextBox.Text = "Pretraga...";
+            }
         }
 
         private void OfferDetails_Click(object sender, RoutedEventArgs e)

@@ -20,7 +20,12 @@
             </Border>
         </ToolBar>
 
-       <DataGrid x:Name="CarsDataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False">
+        <StackPanel DockPanel.Dock="Top" Margin="10">
+            <TextBox Name="SearchTextBox" Text="Pretraga..." TextChanged="SearchTextBox_TextChanged" GotFocus="SearchTextBox_GotFocus" LostFocus="SearchTextBox_LostFocus"/>
+            <TextBlock Name="NoResultsText" Visibility="Collapsed" Foreground="Red" Margin="5">Nema rezultata za pretragu</TextBlock>
+        </StackPanel>
+
+        <DataGrid x:Name="CarsDataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Marka" Binding="{Binding Marka.Naziv}" Width="*"/>
                 <DataGridTextColumn Header="Model" Binding="{Binding Model.NazivModela}" Width="*"/>

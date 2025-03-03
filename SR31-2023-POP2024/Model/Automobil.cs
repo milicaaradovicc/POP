@@ -8,6 +8,8 @@ using SR31_2023_POP2024.Model;
 namespace SR31_2023_POP2024
 {
     public class Automobil{
+        public PoslovneInfo PoslovneInfo;
+
         public int ID { get; set; }
         public int MarkaID { get; set; }
         public int ModelID { get; set; }  

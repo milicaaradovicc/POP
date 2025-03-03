@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,7 +51,7 @@ namespace WPF.Ponuda
             if (poslovneInfo != null)
             {
                 ProdavacTextBlock.Text = $"{poslovneInfo.Prodavac.Ime} {poslovneInfo.Prodavac.Prezime}";
-                CenaProdajeTextBlock.Text = poslovneInfo.CenaProdaje.ToString("C", CultureInfo.GetCultureInfo("de-DE"));
+                CenaProdajeTextBlock.Text = poslovneInfo.CenaProdaje.ToString("C");
             }
         }
     }

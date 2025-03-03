@@ -55,6 +55,11 @@ namespace WPF.Profil.Zarada
         {
             _selectedPoslovneInfo = (PoslovneInfo)SalaryDataGrid.SelectedItem;
         }
+        public void LoadSalary()
+        {
+            var poslovneInfo = _poslovneInfoRepository.GetAllPoslovneInfo();
+            SalaryDataGrid.ItemsSource = poslovneInfo.Cast<PoslovneInfo>();
+        }
 
         private void Account_Click(object sender, RoutedEventArgs e)
         {
@@ -67,12 +72,6 @@ namespace WPF.Profil.Zarada
             {
                 MessageBox.Show("Molimo izaberite stavku iz tabele.");
             }
-        }
-
-        public void LoadSalary()
-        {
-            var poslovneInfo = _poslovneInfoRepository.GetAllPoslovneInfo();
-            SalaryDataGrid.ItemsSource = poslovneInfo.Cast<PoslovneInfo>();
         }
 
         private void PocetnaStranica_Click(object sender, RoutedEventArgs e)
