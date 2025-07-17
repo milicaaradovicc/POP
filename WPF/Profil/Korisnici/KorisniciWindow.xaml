@@ -45,7 +45,6 @@
                     <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*" />
                     <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="*" />
                     <DataGridTextColumn Header="Korisničko ime" Binding="{Binding KorisnickoIme}" Width="*" />
-                    <DataGridTextColumn Header="Lozinka" Binding="{Binding Lozinka}" Width="*" />
                     <DataGridTextColumn Header="JMBG" Binding="{Binding JMBG}" Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
